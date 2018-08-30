@@ -1,42 +1,9 @@
-<mvt:if expr="(ISNULL g.website) AND (g.human NE 'false' AND g.human NE '') AND (isdigit(g.human)) AND (g.human EQ crypto_base64_decode(g.verify))">
-	<mvt:assign name="l.mail:from" value="g.name $ ' <' $ g.email $ '>'" />
-	<mvt:if expr="NOT ISNULL g.storeEmail">
-		<mvt:assign name="l.mail:to" value="crypto_base64_decode(g.storeEmail)" />
-	<mvt:else>
-		<mvt:assign name="l.mail:to" value="g.store:email" />
-	</mvt:if>
-	<mvt:if expr="g.cc">
-		<mvt:assign name="l.mail:cc" value="crypto_base64_decode(g.cc)" />
-	</mvt:if>
-	<mvt:if expr="g.bcc">
-		<mvt:assign name="l.mail:bcc" value="crypto_base64_decode(g.bcc)" />
-	</mvt:if>
-	<mvt:assign name="l.mail:subject" value="'[' $ g.store:name $ ' Contact Form] ' $ g.subject" />
-	<mvt:assign name="l.mail:message" value="'Message from: ' $ g.name $ asciichar(13) $ asciichar(10) $ asciichar(13) $ asciichar(10) $ g.message" />
-	<mvt:do file="g.Module_Library_Utilities" name="g.status" value="v9_SendEmail(l.mail)" />
-	<mvt:if expr="g.status">
-		<mvt:assign name="g.human" value="'false'" />
-		<p class="x-messages x-messages--success">Thank you for your inquiry. A &mvte:global:store:name; representative will contact you shortly.</p>
-	<mvt:else>
-		<p class="x-messages x-messages--error">We're sorry, there was a problem processing your request.</p>
-	</mvt:if>
-</mvt:if>
-
 <noscript>
 	<p class="x-messages x-messages--error" data-hook="contact-us__warning">You must javascript enabled to use this form.</p>
 </noscript>
 <form class="x-contact-form u-hidden" data-hook="contact-form" data-action="&mvte:urls:CTFM:auto;" action="#" method="post" accept-charset="UTF-8">
 	<fieldset>
 		<legend>Contact &mvte:global:store:name; Form</legend>
-		<mvt:comment>
-			<!--
-			By default, this form is designed to send to the store email address.
-			You can change this by replacing g.store:email with 'my_email@my_domain.com'.
-			<mvt:assign name="l.settings:storeEmail" value="crypto_base64_encode('my_email@my_domain.com')" />
-			-->
-		</mvt:comment>
-		<mvt:assign name="l.settings:storeEmail" value="crypto_base64_encode('')" />
-		<input type="hidden" name="storeEmail" value="&mvte:storeEmail;">
 		<mvt:comment>
 			<!--
 			This field is a spam-bot honeypot, it should not have a value!

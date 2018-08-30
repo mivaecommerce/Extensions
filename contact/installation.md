@@ -23,6 +23,7 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
   - Name: `Contact Form`
   - Content: Paste the content from [ctfm_page.html](ctfm_page.html)
 - Ensure the `urls` item is assigned to the page.
+- If you would like to alter either the store email or the visitor confirmation email, there are sections for that with comments.
 
 
 ### Add the CSS
