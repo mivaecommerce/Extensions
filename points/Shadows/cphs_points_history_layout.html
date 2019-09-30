@@ -1,0 +1,248 @@
+<mvt:if expr="l.settings:customer_points_history:total_count EQ 0">
+	<section class="o-layout">
+		<div class="o-layout__item">
+			<p class="x-messages x-messages--info">No customer points entries.</p>
+		</div>
+	</section>
+	<mvt:exit />
+</mvt:if>
+<mvt:if expr="l.settings:customer_points_history:total_count GT 1">
+	<section class="u-flex o-layout--align-center o-layout--justify-between o-layout--wrap">
+		<div class="x-display-list-filtering">
+			<nav class="x-display-list-filtering__per-page">
+				<ul class="o-list-bare">
+					<li class="o-list-block__item">
+						<label class="c-form-label u-text-normal">Show:</label>
+					</li>
+					<mvt:if expr="g.Per_Page EQ 12">
+						<li class="o-list-inline__item">
+							<span class="c-button u-bg-gray-40 u-color-white" title="Show 12 Point Entries Per Page">12</span>
+						</li>
+					<mvt:else>
+						<li class="o-list-inline__item">
+							<a class="c-button" href="&mvte:urls:_self:auto_sep;Sort_By=&mvte:global:Sort_By;&Per_Page=12" title="Show 12 Point Entries Per Page">12</a>
+						</li>
+					</mvt:if>
+					<mvt:if expr="g.Per_Page EQ 24">
+						<li class="o-list-inline__item">
+							<span class="c-button u-bg-gray-40 u-color-white" title="Show 24 Point Entries Per Page">24</span>
+						</li>
+					<mvt:else>
+						<li class="o-list-inline__item">
+							<a class="c-button" href="&mvte:urls:_self:auto_sep;Sort_By=&mvte:global:Sort_By;&Per_Page=24" title="Show 24 Point Entries Per Page">24</a>
+						</li>
+					</mvt:if>
+					<mvt:if expr="g.Per_Page EQ -1">
+						<li class="o-list-inline__item">
+							<span class="c-button u-bg-gray-40 u-color-white" title="Show All Point Entries">All</span>
+						</li>
+					<mvt:else>
+						<li class="o-list-inline__item">
+							<a class="c-button" href="&mvte:urls:_self:auto_sep;Sort_By=&mvte:global:Sort_By;&Per_Page=-1" title="Show All Point Entries">All</a>
+						</li>
+					</mvt:if>
+				</ul>
+			</nav>
+			<form class="x-display-list-filtering__sort-by">
+				<fieldset>
+					<legend>Sort Point Entries By</legend>
+					<ul class="c-form-list">
+						<li class="c-form-list__item">
+							<label class="c-form-label u-text-normal" for="l-sort_by">Sort By:</label>
+							<div class="c-form-select">
+								<select id="l-sort_by" class="c-form-select__dropdown" name="Sort_By" onchange="window.location.href='&mvtj:urls:_self:auto_sep;Per_Page=' + encodeURIComponent( '&mvtj:global:Per_Page;' ) + '&amp;Sort_By=' + encodeURIComponent( this.options[ this.selectedIndex ].value );">
+									<mvt:if expr="ISNULL g.Sort_By">
+										<option value="id" selected="selected">Default</option>
+									<mvt:else>
+										<option value="id">Default</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'orderid_asc'">
+										<option value="orderid_asc" selected="selected">Order Ascending</option>
+									<mvt:else>
+										<option value="orderid_asc">Order Ascending</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'orderid_desc'">
+										<option value="orderid_desc" selected="selected">Order Descending</option>
+									<mvt:else>
+										<option value="orderid_desc">Order Descending</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'points_asc'">
+										<option value="points_asc" selected="selected">Points Ascending</option>
+									<mvt:else>
+										<option value="points_asc">Points Ascending</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'points_desc'">
+										<option value="points_desc" selected="selected">Points Descending</option>
+									<mvt:else>
+										<option value="points_desc">Points Descending</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'dtstamp_asc'">
+										<option value="dtstamp_asc" selected="selected">Date Ascending</option>
+									<mvt:else>
+										<option value="dtstamp_asc">Date Ascending</option>
+									</mvt:if>
+									<mvt:if expr="g.Sort_By EQ 'dtstamp_desc'">
+										<option value="dtstamp_desc" selected="selected">Date Descending</option>
+									<mvt:else>
+										<option value="dtstamp_desc">Date Descending</option>
+									</mvt:if>
+								</select>
+							</div>
+						</li>
+					</ul>
+				</fieldset>
+			</form>
+		</div>
+		<!-- end .x-display-list-filtering -->
+		<mvt:if expr="l.settings:customer_points_history:page_links:last_page GT 1">
+			<nav class="x-pagination">
+				<ul class="o-list-inline">
+					<mvt:if expr="l.settings:customer_points_history:page_links:current_page NE 1">
+						<li class="o-list-inline__item">
+							<a class="c-button" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:prev_link_params;" title="Go to the previous page.">
+								<span class="u-icon-triangle-left"></span>
+							</a>
+						</li>
+					<mvt:else>
+						<li class="o-list-inline__item">
+							<span class="c-button" title="You are on the first page.">
+								<span class="u-icon-triangle-left"></span>
+							</span>
+						</li>
+					</mvt:if>
+					<mvt:if expr="NOT l.settings:customer_points_history:page_links:contains_first">
+						<li class="o-list-inline__item">
+							<a href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:first_link_params;" title="Go to first page.">1&hellip;</a>
+						</li>
+					</mvt:if>
+					<mvt:foreach iterator="pages" array="customer_points_history:page_links:pages">
+						<mvt:if expr="l.settings:customer_points_history:page_links:current_page EQ l.settings:pages:page_num">
+							<li class="o-list-inline__item">
+								<span class="u-text-bold" title="You are on page &mvte:pages:page_num;.">&mvte:pages:page_num;</span>
+							</li>
+						<mvt:else>
+							<li class="o-list-inline__item">
+								<a href="&mvte:urls:_self:auto_sep;&mvte:pages:link_params;" title="Go to page &mvte:pages:page_num;.">&mvte:pages:page_num;</a>
+							</li>
+						</mvt:if>
+					</mvt:foreach>
+					<mvt:if expr="NOT l.settings:customer_points_history:page_links:contains_last">
+						<li class="o-list-inline__item">
+							<a href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:last_link_params;" title="Go to last page.">&hellip;&mvte:customer_points_history:page_links:last_page;</a>
+						</li>
+					</mvt:if>
+					<mvt:if expr="l.settings:customer_points_history:page_links:current_page NE l.settings:customer_points_history:page_links:last_page">
+						<a class="button cmp-product-list__next-previous cmp-product-list__next-previous--next" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:next_link_params;">
+							<span></span>
+							<span class="icon--arrow-right-long"></span>
+						</a>
+						<li class="o-list-inline__item">
+							<a class="c-button" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:next_link_params;" title="Go to the next page.">
+								<span class="u-icon-triangle-right"></span>
+							</a>
+						</li>
+					<mvt:else>
+						<li class="o-list-inline__item">
+							<span class="c-button" title="You are on the last page.">
+								<span class="u-icon-triangle-right"></span>
+							</span>
+						</li>
+					</mvt:if>
+				</ul>
+			</nav>
+			<!-- end .x-pagination -->
+		</mvt:if>
+	</section>
+</mvt:if>
+
+<section class="o-layout">
+	<div class="o-layout__item">
+		<table class="o-table c-table-simple">
+			<thead>
+				<tr class="c-table-simple__row">
+					<th class="c-table-simple__cell" scope="col">Date</th>
+					<th class="c-table-simple__cell" scope="col">Status</th>
+					<th class="c-table-simple__cell" scope="col">Order #</th>
+					<th class="c-table-simple__cell" scope="col">Description</th>
+					<th class="c-table-simple__cell" scope="col">Points</th>
+				</tr>
+			</thead>
+			<tbody>
+				<mvt:foreach iterator="point_entry" array="customer_points_history:items">
+					<tr class="c-table-simple__row">
+						<td class="c-table-simple__cell" data-label="Date">&mvt:point_entry:formatted_dtstamp;</td>
+						<td class="c-table-simple__cell" data-label="Status">&mvte:point_entry:formatted_status;</td>
+						<td class="c-table-simple__cell" data-label="Order #" >
+							<mvt:if expr="l.settings:point_entry:order_id EQ 0">
+								N/A
+							<mvt:else>
+								&mvte:point_entry:order_id;
+							</mvt:if>
+						</td>
+						<td class="c-table-simple__cell" data-label="Description">&mvte:point_entry:descrip;</td>
+						<td class="c-table-simple__cell" data-label="Points">&mvt:point_entry:points;</td>
+					</tr>
+				</mvt:foreach>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<mvt:if expr="l.settings:customer_points_history:page_links:last_page GT 1">
+	<nav class="x-pagination x-pagination--centered">
+		<ul class="o-list-inline">
+			<mvt:if expr="l.settings:customer_points_history:page_links:current_page NE 1">
+				<li class="o-list-inline__item">
+					<a class="c-button" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:prev_link_params;" title="Go to the previous page.">
+						<span class="u-icon-triangle-left"></span>
+					</a>
+				</li>
+			<mvt:else>
+				<li class="o-list-inline__item">
+					<span class="c-button" title="You are on the first page.">
+						<span class="u-icon-triangle-left"></span>
+					</span>
+				</li>
+			</mvt:if>
+			<mvt:if expr="NOT l.settings:customer_points_history:page_links:contains_first">
+				<li class="o-list-inline__item">
+					<a href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:first_link_params;" title="Go to first page.">1&hellip;</a>
+				</li>
+			</mvt:if>
+			<mvt:foreach iterator="pages" array="customer_points_history:page_links:pages">
+				<mvt:if expr="l.settings:customer_points_history:page_links:current_page EQ l.settings:pages:page_num">
+					<li class="o-list-inline__item">
+						<span class="u-text-bold" title="You are on page &mvte:pages:page_num;.">&mvte:pages:page_num;</span>
+					</li>
+				<mvt:else>
+					<li class="o-list-inline__item">
+						<a href="&mvte:urls:_self:auto_sep;&mvte:pages:link_params;" title="Go to page &mvte:pages:page_num;.">&mvte:pages:page_num;</a>
+					</li>
+				</mvt:if>
+			</mvt:foreach>
+			<mvt:if expr="NOT l.settings:customer_points_history:page_links:contains_last">
+				<li class="o-list-inline__item">
+					<a href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:last_link_params;" title="Go to last page.">&hellip;&mvte:customer_points_history:page_links:last_page;</a>
+				</li>
+			</mvt:if>
+			<mvt:if expr="l.settings:customer_points_history:page_links:current_page NE l.settings:customer_points_history:page_links:last_page">
+				<a class="button cmp-product-list__next-previous cmp-product-list__next-previous--next" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:next_link_params;">
+					<span></span>
+					<span class="icon--arrow-right-long"></span>
+				</a>
+				<li class="o-list-inline__item">
+					<a class="c-button" href="&mvte:urls:_self:auto_sep;&mvte:customer_points_history:page_links:next_link_params;" title="Go to the next page.">
+						<span class="u-icon-triangle-right"></span>
+					</a>
+				</li>
+			<mvt:else>
+				<li class="o-list-inline__item">
+					<span class="c-button" title="You are on the last page.">
+						<span class="u-icon-triangle-right"></span>
+					</span>
+				</li>
+			</mvt:if>
+		</ul>
+	</nav>
+	<!-- end .x-pagination -->
+</mvt:if>
