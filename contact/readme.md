@@ -7,7 +7,7 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
 - Add a new content section:
   - Code: `contact_form`
   - Name: `Contact Us Form`
-  - Content: Paste the content from [ctus_content.html](ctus_content.html)
+  - Content: Paste the content from [contact_form.mvt](contact_form.mvt)
 - Copy the item tag `<mvt:item name="readytheme" param="contentsection( 'contact_form' )" />`.
 
 
@@ -21,9 +21,9 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
 - Add a new page:
   - Code: `CTFM`
   - Name: `Contact Form`
-  - Content: Paste the content from [ctfm_page.html](ctfm_page.html)
-- Ensure the `urls` item is assigned to the page.
-- If you would like to alter either the store email or the visitor confirmation email, there are sections for that with comments.
+  - Content: Paste the content from [ctfm.mvt](ctfm.mvt)
+- Ensure the `urls` item has been assigned to the page.
+- If you would like to alter either the store email, or the visitor confirmation email, there are sections for that with comments.
 
 
 ### Add the CSS
@@ -37,6 +37,7 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
   - Active: true
 - Click `Pages` and assign to the `CTUS` page.
 - Click `Resource Groups` and assign to the `css_list` group.
+- **_If you are using the developer build, the `scss` file has been included._**
 
 
 ### Add the JavaScript

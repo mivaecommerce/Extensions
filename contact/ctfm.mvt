@@ -74,7 +74,6 @@
 			-->
 		</mvt:comment>
 		<mvt:assign name="l.mail:headers" value="l.mail:headers $ 'Reply-To:' $ l.mail:reply $ g.eol" />
-		<mvt:assign name="l.mail:headers" value="l.mail:headers $ 'Return-Path:' $ l.mail:from $ g.eol" />
 		<mvt:assign name="l.mail:headers" value="l.mail:headers $ 'MIME-Version: 1.0' $ g.eol" />
 		<mvt:assign name="l.mail:headers" value="l.mail:headers $ 'Content-Type: text/plain; charset=utf-8' $ g.eol" />
 
