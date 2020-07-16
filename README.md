@@ -1,7 +1,8 @@
 # Extensions
-This is a collection of extensions created for the Shadows line of ReadyThemes
+This is a collection of extensions created for the Shadows, and Shadows-based, ReadyThemes.
 
 * **Collapsing Breadcrumbs:** [Code](breadcrumbs/collapsing-breadcrumbs) | [Installation Instructions](breadcrumbs/collapsing-breadcrumbs/install.md)
+* **Category Tree:** [Code](category-tree) | [Demonstration](https://shadows.mivareadythemes.com/category-1.html) | [Installation Instructions](category-tree/install.md)
 * **Contact:** [Code](contact) | [Demonstration](https://shadows.mivareadythemes.com/contact-us.html) | [Installation Instructions](contact/install.md)
 
 # Modules

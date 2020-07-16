@@ -27,7 +27,7 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
 
 
 ### Add the CSS
-- Upload `contact.css` to `mm5/themes/%STORE_ID%/*THEME_NAME*/extensions/contact/`.
+- Upload [contact.css](contact.css) to `mm5/themes/%STORE_ID%/*THEME_NAME*/extensions/contact/`.
 - Navigate to User Interface -> CSS Resources
 - Add a new CSS resource:
   - Code: `x-contact`
@@ -38,10 +38,13 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
 - Click `Pages` and assign to the `CTUS` page.
 - Click `Resource Groups` and assign to the `css_list` group.
 - **_If you are using the developer build, the `scss` file has been included._**
+  - Create a new build subdirectory as `build/extensions/contact/`
+  - Add [_contact.scss](_contact.scss) to the directory.
+  - Update your `build/extensions/extensions.scss` file to include `@import "contact/contact";`
 
 
 ### Add the JavaScript
-- Upload `contact.js` to `mm5/themes/%STORE_ID%/*THEME_NAME*/extensions/contact/`.
+- Upload [contact.js](contact.js) to `mm5/themes/%STORE_ID%/*THEME_NAME*/extensions/contact/`.
 - Navigate to User Interface -> JavaScript Resources
 - Add a new JavaScript resource:
   - Code: `contact`
