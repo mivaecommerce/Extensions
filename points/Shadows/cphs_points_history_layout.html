@@ -157,30 +157,30 @@
 
 <section class="o-layout">
 	<div class="o-layout__item">
-		<table class="o-table c-table-simple">
-			<thead>
-				<tr class="c-table-simple__row">
-					<th class="c-table-simple__cell" scope="col">Date</th>
-					<th class="c-table-simple__cell" scope="col">Status</th>
-					<th class="c-table-simple__cell" scope="col">Order #</th>
-					<th class="c-table-simple__cell" scope="col">Description</th>
-					<th class="c-table-simple__cell" scope="col">Points</th>
+		<table class="c-table-responsive">
+			<thead class="c-table-responsive_thead">
+				<tr class="c-table-responsive__row u-color-gray-30 u-font-small u-text-bold u-text-uppercase">
+					<th class="c-table-responsive__cell" scope="col">Date</th>
+					<th class="c-table-responsive__cell" scope="col">Status</th>
+					<th class="c-table-responsive__cell" scope="col">Order #</th>
+					<th class="c-table-responsive__cell" scope="col">Description</th>
+					<th class="c-table-responsive__cell" scope="col">Points</th>
 				</tr>
 			</thead>
 			<tbody>
 				<mvt:foreach iterator="point_entry" array="customer_points_history:items">
-					<tr class="c-table-simple__row">
-						<td class="c-table-simple__cell" data-label="Date">&mvt:point_entry:formatted_dtstamp;</td>
-						<td class="c-table-simple__cell" data-label="Status">&mvte:point_entry:formatted_status;</td>
-						<td class="c-table-simple__cell" data-label="Order #" >
+					<tr class="c-table-responsive__row">
+						<td class="c-table-responsive__cell c-table-responsive__cell--flex" data-label="Date">&mvt:point_entry:formatted_dtstamp;</td>
+						<td class="c-table-responsive__cell c-table-responsive__cell--flex" data-label="Status">&mvte:point_entry:formatted_status;</td>
+						<td class="c-table-responsive__cell c-table-responsive__cell--flex" data-label="Order #" >
 							<mvt:if expr="l.settings:point_entry:order_id EQ 0">
 								N/A
 							<mvt:else>
 								&mvte:point_entry:order_id;
 							</mvt:if>
 						</td>
-						<td class="c-table-simple__cell" data-label="Description">&mvte:point_entry:descrip;</td>
-						<td class="c-table-simple__cell" data-label="Points">&mvt:point_entry:points;</td>
+						<td class="c-table-responsive__cell c-table-responsive__cell--flex" data-label="Description">&mvte:point_entry:descrip;</td>
+						<td class="c-table-responsive__cell c-table-responsive__cell--flex" data-label="Points">&mvt:point_entry:points;</td>
 					</tr>
 				</mvt:foreach>
 			</tbody>
