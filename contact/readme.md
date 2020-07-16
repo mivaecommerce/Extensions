@@ -1,53 +1,5 @@
-# Contact Us Form Installation
+This extension adds a basic form to the CTUS page.
 
-If your ReadyTheme did not come with the Contact extension pre-installed, you can add it to your site by performing the following steps.
+Shadows, and Shadows-based ReadyThemes, ship with the Contact extension included. The CSS is part of `/themes/%STORE_ID%/THEME_NAME/extensions.css` and the JavaScript is in `/themes/%STORE_ID%/THEME_NAME/extensions/contact/contact.js` and only linked to the CTUS page. If you want to make styling changes, it is recommended you add them to your `/themes/%STORE_ID%/THEME_NAME/theme.css` file. The HTML for this extension can be accessed by navigating to `RradyThemes -> Content Sections -> contact_form`; you can modify the form processor by navigating to `User Interface -> Pages -> CTFM`.
 
-### Create the contact form
-- Navigate to ReadyThemes -> Content Sections
-- Add a new content section:
-  - Code: `contact_form`
-  - Name: `Contact Us Form`
-  - Content: Paste the content from [contact_form.mvt](contact_form.mvt)
-- Copy the item tag `<mvt:item name="readytheme" param="contentsection( 'contact_form' )" />`.
-
-
-### Add form to Contact Page
-- Navigate to User Interface -> Pages -> CTUS
-- Paste the item tag for the contact form where you would like it to appear on tha page.
-
-
-### Create the form processor page
-- Navigate to User Interface -> Pages
-- Add a new page:
-  - Code: `CTFM`
-  - Name: `Contact Form`
-  - Content: Paste the content from [ctfm.mvt](ctfm.mvt)
-- Ensure the `urls` item has been assigned to the page.
-- If you would like to alter either the store email, or the visitor confirmation email, there are sections for that with comments.
-
-
-### Add the CSS
-- Upload `contact.css` to `mm5/themes/*THEME_NAME*/extensions/contact/`.
-- Navigate to User Interface -> CSS Resources
-- Add a new CSS resource:
-  - Code: `x-contact`
-  - Type: Local File
-  - File Path: `themes/*THEME_NAME*/extensions/contact/contact.css`
-  - Global: false
-  - Active: true
-- Click `Pages` and assign to the `CTUS` page.
-- Click `Resource Groups` and assign to the `css_list` group.
-- **_If you are using the developer build, the `scss` file has been included._**
-
-
-### Add the JavaScript
-- Upload `contact.js` to `mm5/themes/*THEME_NAME*/extensions/contact/`.
-- Navigate to User Interface -> JavaScript Resources
-- Add a new JavaScript resource:
-  - Code: `contact`
-  - Type: Local File
-  - File Path: `themes/*THEME_NAME*/extensions/contact/contact.js`
-  - Global: false
-  - Active: true
-- Click `Pages` and assign to the `CTUS` page.
-- Click `Resource Groups` and assign to the `footer_js` group.
+If you are using Shadows DE, you can modify the CSS in `mm5/themes/%STORE_ID%/THEME_NAME/extensions/contact/` and update as part of your build process.
