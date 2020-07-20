@@ -15,5 +15,5 @@ If your ReadyTheme did not come with the Collapsing Breadcrumbs extension pre-in
 
 ### Add the JavaScript
 - Add [collapsing-breadcrumbs.js](collapsing-breadcrumbs.js) your `build/extensions/breadcrumbs/collapsing-breadcrumbs/` subdirectory.
-- Update your `gulpfile.js` file to include `buildPathExtensions + '/breadcrumbs/collapsing/collapsing-breadcrumbs.js'`.
+- Update your `gulpfile.js` file to include `buildPathExtensions + '/breadcrumbs/collapsing/collapsing-breadcrumbs.js'` to your `let extensions` variable.
 - From your command line, run `gulp build`.

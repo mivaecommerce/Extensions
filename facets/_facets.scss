@@ -1,0 +1,55 @@
+/* ==========================================================================
+   EXTENSIONS / FACETS / FACETS
+   ========================================================================== */
+
+
+.x-facet-set {}
+
+	.x-facet-set__trigger {
+		display: none;
+	}
+
+	.x-facet-set__label.x-collapsible-content__toggle {
+		padding-bottom: 0.5em;
+		font-size: 0.875rem;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.x-facet-set__list {
+		display: block;
+		max-height: 0;
+		opacity: 0;
+		visibility: hidden;
+		transition-delay: 0.15s, 0s, 0s;
+	}
+
+	.x-facet-set__list.x-collapsible-content__item[aria-hidden='false'] {
+		max-height: 50em;
+	}
+
+	.x-facet-set .c-form-checkbox {
+		font-size: 14px;
+	}
+
+
+/**
+ * This is the Combination Facet CSS for the default output from Miva
+ */
+.mm_combination_facet_container {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0.5rem;
+	border: $global-border-width solid $color-gray-10;
+}
+
+	.mm_combination_facet_fields {
+		flex: 1;
+	}
+
+	.mm_combination_facet_fields,
+	.mm_combination_facet_action_container {
+		padding: 0.5rem;
+	}
