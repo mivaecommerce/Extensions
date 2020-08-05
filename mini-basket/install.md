@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the default Mini-Basket extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Update Mini-Basket HTML
-- Navigate to User Interface -> Global Settings -> Mini-Basket
+- Navigate to User Interface -> Global Settings -> Settings -> Mini-Basket
 - Paste the content from [mini-basket.mvt](mini-basket.mvt).
 
 

@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the Collapsing Breadcrumbs extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Update Smart Breadcrumbs HTML
-- Navigate to User Interface -> Settings -> Smart Breadcrumbs
+- Navigate to User Interface -> Global Settings -> Settings -> Smart Breadcrumbs
 - Paste the content from [collapsing-breadcrumbs.mvt](collapsing-breadcrumbs.mvt).
 
 

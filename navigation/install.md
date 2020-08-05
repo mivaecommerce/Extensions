@@ -3,12 +3,12 @@
 If your ReadyTheme did not come with the default Transfigure Navigation extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Update Transfigure Navigation HTML
-- Navigate to ReadyThemes -> Navigation Sets -> primary_navigation
+- Navigate to User Interface -> Theme Components -> Navigation Sets -> primary_navigation
 - Paste the content from [transfigure-navigation.mvt](transfigure-navigation.mvt).
 
 
 ### Add Transfigure Navigation to global header
-- Navigate to User Interface -> Settings -> Global Header
+- Navigate to User Interface -> Global Settings -> Settings -> Global Header
 - Paste the following code where you would like the navigation to appear:
     - _Note: You may need to modify to fit best in your theme._
 

@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the Fasten Header extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Create the fasten header block
-- Navigate to ReadyThemes -> Content Sections
+- Navigate to User Interface -> Theme Components -> Content Sections
 - Add a new content section:
   - Code: `fasten_header`
   - Name: `Fasten Header`
@@ -12,7 +12,7 @@ If your ReadyTheme did not come with the Fasten Header extension pre-installed, 
 
 
 ### Add fasten header to global header
-- Navigate to User Interface -> Settings -> Global Header
+- Navigate to User Interface -> Global Settings -> Settings -> Global Header
 - Paste the item tag for the fasten header block within the site header, preferably above `<mvt:item name="navbar" />`.
 
 

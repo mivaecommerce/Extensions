@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the default Category Tree extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Update Category Tree Template HTML
-- Navigate to User Interface -> Settings -> Category Tree Template
+- Navigate to User Interface -> Global Settings -> Settings -> Category Tree Template
 - Paste the content from [category-tree.mvt](category-tree.mvt).
 
 

@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the Contact extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Create the contact form
-- Navigate to ReadyThemes -> Content Sections
+- Navigate to User Interface -> Theme Components -> Content Sections
 - Add a new content section:
   - Code: `contact_form`
   - Name: `Contact Us Form`

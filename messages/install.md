@@ -3,7 +3,7 @@
 If your ReadyTheme did not come with the Messages extension pre-installed, you can add it to your site by performing the following steps.
 
 ### Create the messages block
-- Navigate to ReadyThemes -> Content Sections
+- Navigate to User Interface -> Theme Components -> Content Sections
 - Add a new content section:
   - Code: `messages`
   - Name: `Error and Information Messages`
