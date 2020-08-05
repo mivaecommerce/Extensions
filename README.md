@@ -9,6 +9,9 @@ This is a collection of extensions created for the Shadows, and Shadows-based, R
 * **Facets:** [Code](facets) | [Demonstration](https://shadows.mivareadythemes.com/sub-category-1.html) | [Installation Instructions](facets/install.md)
 * **Fasten Header:** [Code](fasten-header) | [Demonstration (scroll down)](https://shadows.mivareadythemes.com/) | [Installation Instructions](fasten-header/install.md)
 * **Hero:** [Code](hero) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](hero/install.md)
+* **Messages:** [Code](messages) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](messages/install.md)
+* **Mini-Basket:** [Code](mini-basket) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](mini-basket/install.md)
+* **Transfigure Navigation:** [Code](navigation) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](navigation/install.md)
 
 # Modules
 When a module creates a new set of pages or layout, you can find ReadyTheme specific version of those here. These pages and layouts are for the Shadows, and Shadows-based, ReadyThemes.
