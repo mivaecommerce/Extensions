@@ -32,3 +32,14 @@ If your ReadyTheme did not come with the default Transfigure Navigation extensio
 ### Add the JavaScript
 - Add [transfigure-navigation.js](transfigure-navigation.js) to your `build/extensions/navigation/` subdirectory.
 - Update your `gulpfile.js` file to include `buildPathExtensions + '/navigation/transfigure-navigation.js'` to your `let extensions` variable.
+
+
+### Initialize the extension
+Within `mm5/themes/%STORE_ID%/THEME_NAME/ui/theme.js`, locate `init: function () {` and append this code:
+
+```javascript
+/**
+ * Initialize the Transfigure Navigation extension
+ */
+$.hook('has-drop-down').transfigureNavigation();
+```

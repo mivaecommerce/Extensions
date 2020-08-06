@@ -16,3 +16,14 @@ If your ReadyTheme did not come with the default Mini-Basket extension pre-insta
 ### Add the JavaScript
 - Add [mini-basket.js](mini-basket.js) to your `build/extensions/mini-basket/` subdirectory.
 - Update your `gulpfile.js` file to include `buildPathExtensions + '/mini-basket/mini-basket.js'` to your `let extensions` variable.
+
+
+### Initialize the extension
+Within `mm5/themes/%STORE_ID%/THEME_NAME/ui/theme.js`, locate `init: function () {` and append this code:
+
+```javascript
+/**
+ * Initialize the Mini-Basket extension
+ */
+miniBasket.init();
+```
