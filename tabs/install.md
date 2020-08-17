@@ -15,7 +15,7 @@ If your ReadyTheme did not come with the A11y Tabs extension pre-installed, you 
 
 
 ### Initialize the extension
-Within `mm5/themes/%STORE_ID%/THEME_NAME/ui/theme.js`, append this code where you would like your tabs to be:
+Within `build/ui/theme.js`, append this code where you would like your tabs to be:
 
 ```javascript
 /**

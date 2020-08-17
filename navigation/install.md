@@ -35,7 +35,7 @@ If your ReadyTheme did not come with the default Transfigure Navigation extensio
 
 
 ### Initialize the extension
-Within `mm5/themes/%STORE_ID%/THEME_NAME/ui/theme.js`, locate `init: function () {` and append this code:
+Within `build/ui/theme.js`, locate `init: function () {` and append this code:
 
 ```javascript
 /**

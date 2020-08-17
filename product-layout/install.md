@@ -19,7 +19,7 @@ _**Note:** You may need to rollback your page code to earlier version or copy th
 
 
 ### Initialize the AJAX Add to Cart extension
-Within `mm5/themes/%STORE_ID%/THEME_NAME/ui/theme.js`, locate `jsPROD: function () {` and append this code:
+Within `build/ui/theme.js`, locate `jsPROD: function () {` and append this code:
 
 ```javascript
 /**

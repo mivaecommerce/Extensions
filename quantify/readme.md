@@ -1,3 +1,3 @@
 The Quantify extension, included in Shadows, allows for the use of buttons to increase/decrease item quantities on the product and basket pages. When used on the basket page, the decrease button becomes a remove button if the quantity is 1. The CSS is part of `/themes/%STORE_ID%/THEME_NAME/extensions.css` and the JavaScript is in `/themes/%STORE_ID%/THEME_NAME/extensions.js`. If you want to make styling changes, it is recommended you add them to your `/themes/%STORE_ID%/THEME_NAME/theme.css` file.
 
-If you are using Shadows DE, you can modify the CSS or JavaScript in `mm5/themes/%STORE_ID%/THEME_NAME/extensions/quantify/` and update as part of your build process.
+If you are using Shadows DE, you can modify the CSS or JavaScript in `build/extensions/quantify/` and update as part of your build process.

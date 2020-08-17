@@ -2,4 +2,4 @@ This extension adds a basic form to the CTUS page.
 
 Shadows, and Shadows-based ReadyThemes, ship with the Contact extension included. The CSS is part of `/themes/%STORE_ID%/THEME_NAME/extensions.css` and the JavaScript is in `/themes/%STORE_ID%/THEME_NAME/extensions/contact/contact.js` and only linked to the CTUS page. If you want to make styling changes, it is recommended you add them to your `/themes/%STORE_ID%/THEME_NAME/theme.css` file. The HTML for this extension can be accessed by navigating to `RradyThemes -> Content Sections -> contact_form`; you can modify the form processor by navigating to `User Interface -> Pages -> CTFM`.
 
-If you are using Shadows DE, you can modify the CSS in `mm5/themes/%STORE_ID%/THEME_NAME/extensions/contact/` and update as part of your build process.
+If you are using Shadows DE, you can modify the CSS in `build/extensions/contact/` and update as part of your build process.

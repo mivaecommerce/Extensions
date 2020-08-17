@@ -2,4 +2,4 @@ This extension is a variation on the Priority+ navigation pattern where extra li
 
 Shadows, and Shadows-based ReadyThemes, ship with the Collapsing Breadcrumbs extension included. The CSS is part of `/themes/%STORE_ID%/THEME_NAME/extensions.css` and the JavaScript is in `/themes/%STORE_ID%/THEME_NAME/extensions.js`. If you want to make styling changes, it is recommended you add them to your `/themes/%STORE_ID%/THEME_NAME/theme.css` file. The HTML for this extension can be accessed by navigating to `User Interface -> Global Settings -> Settings -> Smart Breadcrumbs`.
 
-If you are using Shadows DE, you can modify the CSS or JavaScript in `mm5/themes/%STORE_ID%/THEME_NAME/extensions/breadcrumbs/collapsing-breadcrumbs/` and update as part of your build process.
+If you are using Shadows DE, you can modify the CSS or JavaScript in `build/extensions/breadcrumbs/collapsing-breadcrumbs/` and update as part of your build process.
