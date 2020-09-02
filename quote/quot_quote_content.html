@@ -14,10 +14,10 @@
 	<tbody>
 		<mvt:foreach iterator="quote_item" array="quote_content:quote_items">
 			<tr class="c-table-responsive__row">
-				<td class="c-table-responsive__cell" scope="row">
+				<td class="c-table-responsive__cell">
 					<div class="o-layout">
 						<div class="o-layout__item u-width-12 u-width-4--m u-width-3--l u-text-center--m">
-							<p><img src="&mvte:quote_item:imagetypes:main;" alt="&mvte:quote_item:name;"></p>
+							<p><img src="&mvte:quote_item:imagetypes:main;" alt="&mvte:quote_item:name;" loading="lazy" width="&mvte:quote_content:b_width;" height="&mvte:quote_content:b_height;"></p>
 						</div>
 						<div class="o-layout__item u-width-12 u-width-8--m u-width-9--l">
 							<p class="c-heading-echo">

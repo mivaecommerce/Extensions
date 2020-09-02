@@ -14,7 +14,7 @@
 	function SubmitNote() {
 		'use strict';
 		
-		var note_content = document.getElementById('note_content').value;
+		let note_content = document.getElementById('note_content').value;
 
 		Runtime_QuoteNote_Insert('&mvtj:quote_info:quote:id;', note_content, function (response) {
 			if (!response.success) {
@@ -33,15 +33,15 @@
 		<form>
 			<fieldset>
 				<legend>Request Quote Change</legend>
-				<ul class="c-form-list">
-					<li class="c-form-list__item">
+				<div class="c-form-list">
+					<div class="c-form-list__item">
 						<label class="u-font-small u-text-uppercase" for="note_content">Request</label>
-					</li>
-					<li class="c-form-list__item">
+					</div>
+					<div class="c-form-list__item">
 						<textarea id="note_content" class="c-form-input c-form-input--long"></textarea><br>
 						<input class="c-button c-button--large u-bg-gray-50 u-border-none u-font-small u-text-uppercase" type="submit" value="Submit" onclick="SubmitNote()">
-					</li>
-				</ul>
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>
