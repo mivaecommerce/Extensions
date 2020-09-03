@@ -1,0 +1,211 @@
+<form action="&mvte:urls:_self:auto;" method="post" accept-charset="UTF-8">
+	<fieldset>
+		<legend>Request A Quote Form</legend>
+		<input name="OrderStatus_PageNumber" type="hidden" value="&mvte:global:OrderStatus_PageNumber;"/>
+		<input name="Search" type="hidden" value="&mvte:global:Search;"/>
+		<input name="Action" type="hidden" value="MIVA_REQUEST_QUOTE"/>
+		<input name="Store_Code" type="hidden" value="&mvte:global:Store_Code;"/>
+		<input name="Category_Code" type="hidden" value="&mvte:global:Category_Code;"/>
+		<input name="Product_Code" type="hidden" value="&mvte:global:Product_Code;"/>
+		<input name="AllOffset" type="hidden" value="&mvte:global:AllOffset;"/>
+		<input name="AllPrevOffset" type="hidden" value="&mvte:global:AllPrevOffset;"/>
+		<input name="AllNextOffset" type="hidden" value="&mvte:global:AllNextOffset;"/>
+		<input name="CatListingOffset" type="hidden" value="&mvte:global:CatListingOffset;"/>
+		<input name="CatListingPrevOffset" type="hidden" value="&mvte:global:CatListingPrevOffset;"/>
+		<input name="CatListingNextOffset" type="hidden" value="&mvte:global:CatListingNextOffset;"/>
+		<input name="RelatedOffset" type="hidden" value="&mvte:global:RelatedOffset;"/>
+		<input name="RelatedPrevOffset" type="hidden" value="&mvte:global:RelatedPrevOffset;"/>
+		<input name="RelatedNextOffset" type="hidden" value="&mvte:global:RelatedNextOffset;"/>
+		<input name="SearchOffset" type="hidden" value="&mvte:global:SearchOffset;"/>
+		<input name="SearchPrevOffset" type="hidden" value="&mvte:global:SearchPrevOffset;"/>
+		<input name="SearchNextOffset" type="hidden" value="&mvte:global:SearchNextOffset;"/>
+		<input name="Offset" type="hidden" value="&mvte:global:Offset;"/>
+		<input name="PrevOffset" type="hidden" value="&mvte:global:PrevOffset;"/>
+		<input name="NextOffset" type="hidden" value="&mvte:global:NextOffset;"/>
+		<div class="c-form-list">
+			<mvt:if expr="l.settings:request_quote:standard_fields:fname NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:fname EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_FirstName">First Name:</label>
+						<input id="RequestQuote_FirstName" class="c-form-input" type="text" name="RequestQuote_FirstName" value="&mvte:global:RequestQuote_FirstName;" required aria-required="true">
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_FirstName">First Name:</label>
+						<input id="RequestQuote_FirstName" class="c-form-input" type="text" name="RequestQuote_FirstName" value="&mvte:global:RequestQuote_FirstName;">
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:lname NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:lname EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_LastName">Last Name:</label>
+						<input id="RequestQuote_LastName" class="c-form-input" type="text" name="RequestQuote_LastName" value="&mvte:global:RequestQuote_LastName;" required aria-required="true">
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_LastName">Last Name:</label>
+						<input id="RequestQuote_LastName" class="c-form-input" type="text" name="RequestQuote_LastName" value="&mvte:global:RequestQuote_LastName;">
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:phone NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:phone EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_Phone">Phone:</label>
+						<input id="RequestQuote_Phone" class="c-form-input" type="text" inputmode="tel" name="RequestQuote_Phone" value="&mvte:global:RequestQuote_Phone;" required aria-required="true">
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_Phone">Phone:</label>
+						<input id="RequestQuote_Phone" class="c-form-input" type="text" inputmode="tel" name="RequestQuote_Phone" value="&mvte:global:RequestQuote_Phone;">
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:zip NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:zip EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_Zip">Zip/Postal Code:</label>
+						<input id="RequestQuote_Zip" class="c-form-input" type="text" name="RequestQuote_Zip" value="&mvte:global:RequestQuote_Zip;" required aria-required="true">
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_Zip">Zip/Postal Code:</label>
+						<input id="RequestQuote_Zip" class="c-form-input" type="text" name="RequestQuote_Zip" value="&mvte:global:RequestQuote_Zip;">
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:country NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full" data-hook="mvt-select" data-mvt-classlist="c-form-select__dropdown" data-mvt-id="RequestQuote_Country" data-mvt-autocomplete="country">
+					<mvt:if expr="l.settings:request_quote:standard_fields:country EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_Country">Country:</label>
+						<div class="c-form-select">
+							<mvt:item name="countries" param="RequestQuote_Country"/>
+						</div>
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_Country">Country:</label>
+						<div class="c-form-select">
+							<mvt:item name="countries" param="RequestQuote_Country"/>
+						</div>
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:email NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:email EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_Email">Email Address:</label>
+						<input id="RequestQuote_Email" class="c-form-input" type="email" inputmode="email" name="RequestQuote_Email" value="&mvte:global:RequestQuote_Email;" required aria-required="true">
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_Email">Email Address:</label>
+						<input id="RequestQuote_Email" class="c-form-input" type="email" inputmode="email" name="RequestQuote_Email" value="&mvte:global:RequestQuote_Email;">
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:comment NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:comment EQ 'R'">
+						<label class="c-form-label is-required" for="RequestQuote_Comment" title="Additional Comments or Requests">Additional Comments or Requests:</label>
+						<textarea id="RequestQuote_Comment" class="c-form-input c-form-input--long" name="RequestQuote_Comment" placeholder="Type additional comments or requests here..." required aria-required="true">&mvte:global:RequestQuote_Comment;</textarea>
+					<mvt:else>
+						<label class="c-form-label" for="RequestQuote_Comment" title="Additional Comments or Requests">Additional Comments or Requests:</label>
+						<textarea id="RequestQuote_Comment" class="c-form-input c-form-input--long" name="RequestQuote_Comment" placeholder="Type additional comments or requests here...">&mvte:global:RequestQuote_Comment;</textarea>
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:if expr="l.settings:request_quote:standard_fields:basket NE 'H'">
+				<div class="c-form-list__item c-form-list__item--full">
+					<mvt:if expr="l.settings:request_quote:standard_fields:basket EQ 'R'">
+						<label class="c-form-checkbox is-required">
+							<mvt:if expr="g.RequestQuote_Include">
+								<input id="RequestQuote_Include" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_Include" checked>
+							<mvt:else>
+								<input id="RequestQuote_Include" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_Include">
+							</mvt:if>
+							<span class="c-form-checkbox__caption">Include basket contents</span>
+						</label>
+					<mvt:else>
+						<label class="c-form-checkbox">
+							<mvt:if expr="g.RequestQuote_Include">
+								<input id="RequestQuote_Include" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_Include" checked>
+							<mvt:else>
+								<input id="RequestQuote_Include" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_Include">
+							</mvt:if>
+							<span class="c-form-checkbox__caption">Include basket contents</span>
+						</label>
+					</mvt:if>
+				</div>
+			</mvt:if>
+			<mvt:foreach array="request_quote:custom_fields" iterator="field">
+				<div class="c-form-list__item c-form-list__item--full">
+					<input type="hidden" name="RequestQuote_CustomFields[&mvte:field:index;]:code" value="&mvte:field:code;">
+					<mvt:if expr="l.settings:field:type EQ 'text' OR l.settings:field:type EQ 'memo' OR l.settings:field:type EQ 'select'">
+						<mvt:if expr="l.settings:field:required">
+							<label class="c-form-label is-required" for="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvt:field:prompt;:</label>
+						<mvt:else>
+							<label class="c-form-label" for="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvt:field:prompt;:</label>
+						</mvt:if>
+						<mvt:if expr="l.settings:field:type EQ 'text'">
+							<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-input" type="text" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="&mvte:field:value;">
+						<mvt:elseif expr="l.settings:field:type EQ 'memo'">
+							<textarea id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-input c-form-input--long" name="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvte:field:value;</textarea>
+						<mvt:elseif expr="l.settings:field:type EQ 'select'">
+							<div class="c-form-select">
+								<select id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-select__dropdown" name="RequestQuote_CustomFields[&mvte:field:index;]:value">
+									<mvt:foreach iterator="option" array="field:options">
+										<mvt:if expr="( ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ 0 ) AND ( l.settings:option:id EQ l.settings:field:default_id ) ) OR ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ l.settings:option:code )">
+											<option value="&mvte:option:code;" selected>&mvte:option:prompt;</option>
+										<mvt:else>
+											<option value="&mvte:option:code;">&mvte:option:prompt;</option>
+										</mvt:if>
+									</mvt:foreach>
+								</select>
+							</div>
+						</mvt:if>
+					<mvt:elseif expr="l.settings:field:type EQ 'radio'">
+						<mvt:foreach iterator="option" array="field:options">
+							<mvt:if expr="l.settings:field:required">
+								<label class="c-form-checkbox c-form-checkbox--radio is-required">
+									<mvt:if expr="( ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ 0 ) AND ( l.settings:option:id EQ l.settings:field:default_id ) ) OR ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ l.settings:option:code )">
+										<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="radio" name="RequestQuote_CustomFields[&mvte:field:index;]:value" checked>
+									<mvt:else>
+										<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="radio" name="RequestQuote_CustomFields[&mvte:field:index;]:value">
+									</mvt:if>
+									<span class="c-form-checkbox__caption">&mvt:option:prompt;</span>
+								</label>
+							<mvt:else>
+								<label class="c-form-checkbox c-form-checkbox--radio">
+									<mvt:if expr="( ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ 0 ) AND ( l.settings:option:id EQ l.settings:field:default_id ) ) OR ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ l.settings:option:code )">
+										<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="radio" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="&mvte:option:code;" checked>
+									<mvt:else>
+										<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="radio" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="&mvte:option:code;">
+									</mvt:if>
+									<span class="c-form-checkbox__caption">&mvt:option:prompt;</span>
+								</label>
+							</mvt:if>
+						</mvt:foreach>
+					<mvt:elseif expr="l.settings:field:type EQ 'checkbox'">
+						<mvt:if expr="l.settings:field:required">
+							<label class="c-form-checkbox is-required">
+								<mvt:if expr="g.RequestQuote_CustomFields[l.settings:field:index]:value">
+									<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="Yes" checked>
+								<mvt:else>
+									<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_CustomFields[&mvte:field:index;]:value">
+								</mvt:if>
+								<span class="c-form-checkbox__caption">&mvt:field:prompt;</span>
+							</label>
+						<mvt:else>
+							<label class="c-form-checkbox">
+								<mvt:if expr="g.RequestQuote_CustomFields[l.settings:field:index]:value">
+									<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="Yes" checked>
+								<mvt:else>
+									<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_CustomFields[&mvte:field:index;]:value">
+								</mvt:if>
+								<span class="c-form-checkbox__caption">&mvt:field:prompt;</span>
+							</label>
+						</mvt:if>
+					</mvt:if>
+				</div>
+			</mvt:foreach>
+			<mvt:if expr="NOT ISNULL l.settings:request_quote:standard_fields:terms">
+				<div class="c-form-list__item c-form-list__item--full">
+					&mvt:request_quote:standard_fields:terms;
+				</div>
+			</mvt:if>
+			<div class="c-form-list__item">
+				<input class="c-button c-button--large u-bg-gray-50 u-color-white u-text-uppercase" type="submit" value="Request Quote">
+			</div>
+		</div>
+	</fieldset>
+</form>
