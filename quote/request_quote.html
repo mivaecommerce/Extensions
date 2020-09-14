@@ -26,7 +26,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:fname NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:fname EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_FirstName">First Name:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_FirstName">First Name:</label>
 						<input id="RequestQuote_FirstName" class="c-form-input" type="text" name="RequestQuote_FirstName" value="&mvte:global:RequestQuote_FirstName;" required aria-required="true">
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_FirstName">First Name:</label>
@@ -37,7 +37,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:lname NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:lname EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_LastName">Last Name:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_LastName">Last Name:</label>
 						<input id="RequestQuote_LastName" class="c-form-input" type="text" name="RequestQuote_LastName" value="&mvte:global:RequestQuote_LastName;" required aria-required="true">
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_LastName">Last Name:</label>
@@ -48,7 +48,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:phone NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:phone EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_Phone">Phone:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_Phone">Phone:</label>
 						<input id="RequestQuote_Phone" class="c-form-input" type="text" inputmode="tel" name="RequestQuote_Phone" value="&mvte:global:RequestQuote_Phone;" required aria-required="true">
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_Phone">Phone:</label>
@@ -59,7 +59,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:zip NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:zip EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_Zip">Zip/Postal Code:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_Zip">Zip/Postal Code:</label>
 						<input id="RequestQuote_Zip" class="c-form-input" type="text" name="RequestQuote_Zip" value="&mvte:global:RequestQuote_Zip;" required aria-required="true">
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_Zip">Zip/Postal Code:</label>
@@ -70,7 +70,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:country NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full" data-hook="mvt-select" data-mvt-classlist="c-form-select__dropdown" data-mvt-id="RequestQuote_Country" data-mvt-autocomplete="country">
 					<mvt:if expr="l.settings:request_quote:standard_fields:country EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_Country">Country:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_Country">Country:</label>
 						<div class="c-form-select">
 							<mvt:item name="countries" param="RequestQuote_Country"/>
 						</div>
@@ -85,7 +85,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:email NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:email EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_Email">Email Address:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_Email">Email Address:</label>
 						<input id="RequestQuote_Email" class="c-form-input" type="email" inputmode="email" name="RequestQuote_Email" value="&mvte:global:RequestQuote_Email;" required aria-required="true">
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_Email">Email Address:</label>
@@ -96,7 +96,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:comment NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:comment EQ 'R'">
-						<label class="c-form-label is-required" for="RequestQuote_Comment" title="Additional Comments or Requests">Additional Comments or Requests:</label>
+						<label class="c-form-label u-text-bold" for="RequestQuote_Comment" title="Additional Comments or Requests">Additional Comments or Requests:</label>
 						<textarea id="RequestQuote_Comment" class="c-form-input c-form-input--long" name="RequestQuote_Comment" placeholder="Type additional comments or requests here..." required aria-required="true">&mvte:global:RequestQuote_Comment;</textarea>
 					<mvt:else>
 						<label class="c-form-label" for="RequestQuote_Comment" title="Additional Comments or Requests">Additional Comments or Requests:</label>
@@ -107,7 +107,7 @@
 			<mvt:if expr="l.settings:request_quote:standard_fields:basket NE 'H'">
 				<div class="c-form-list__item c-form-list__item--full">
 					<mvt:if expr="l.settings:request_quote:standard_fields:basket EQ 'R'">
-						<label class="c-form-checkbox is-required">
+						<label class="c-form-checkbox u-text-bold">
 							<mvt:if expr="g.RequestQuote_Include">
 								<input id="RequestQuote_Include" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_Include" checked>
 							<mvt:else>
@@ -132,7 +132,7 @@
 					<input type="hidden" name="RequestQuote_CustomFields[&mvte:field:index;]:code" value="&mvte:field:code;">
 					<mvt:if expr="l.settings:field:type EQ 'text' OR l.settings:field:type EQ 'memo' OR l.settings:field:type EQ 'select'">
 						<mvt:if expr="l.settings:field:required">
-							<label class="c-form-label is-required" for="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvt:field:prompt;:</label>
+							<label class="c-form-label u-text-bold" for="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvt:field:prompt;:</label>
 						<mvt:else>
 							<label class="c-form-label" for="RequestQuote_CustomFields[&mvte:field:index;]:value">&mvt:field:prompt;:</label>
 						</mvt:if>
@@ -156,7 +156,7 @@
 					<mvt:elseif expr="l.settings:field:type EQ 'radio'">
 						<mvt:foreach iterator="option" array="field:options">
 							<mvt:if expr="l.settings:field:required">
-								<label class="c-form-checkbox c-form-checkbox--radio is-required">
+								<label class="c-form-checkbox c-form-checkbox--radio u-text-bold">
 									<mvt:if expr="( ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ 0 ) AND ( l.settings:option:id EQ l.settings:field:default_id ) ) OR ( g.RequestQuote_CustomFields[l.settings:field:index]:value EQ l.settings:option:code )">
 										<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="radio" name="RequestQuote_CustomFields[&mvte:field:index;]:value" checked>
 									<mvt:else>
@@ -177,7 +177,7 @@
 						</mvt:foreach>
 					<mvt:elseif expr="l.settings:field:type EQ 'checkbox'">
 						<mvt:if expr="l.settings:field:required">
-							<label class="c-form-checkbox is-required">
+							<label class="c-form-checkbox u-text-bold">
 								<mvt:if expr="g.RequestQuote_CustomFields[l.settings:field:index]:value">
 									<input id="RequestQuote_CustomFields[&mvte:field:index;]:value" class="c-form-checkbox__input" type="checkbox" name="RequestQuote_CustomFields[&mvte:field:index;]:value" value="Yes" checked>
 								<mvt:else>
