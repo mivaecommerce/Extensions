@@ -17,6 +17,7 @@ This is a collection of extensions created for the Shadows, and Shadows-based, R
 * **Product Lists:** [Code](product-lists) | [Demonstration](https://shadows.mivareadythemes.com/product-list.html) | [Installation Instructions](product-lists/install.md)
 * **Quantify:** [Code](quantify) | [Demonstration](https://shadows.mivareadythemes.com/number-2.html) | [Installation Instructions](quantify/install.md)
 * **Search Preview:** [Code](search-preview) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](search-preview/install.md)
+* **Show Password:** [Code](show-password) | [Demonstration (_Click "Sign In"_)](https://shadows.mivareadythemes.com/) | [Installation Instructions](show-password/install.md)
 * **A11y Toggle:** [Code](show-related) | [Demonstration (_Click "Sign In"_)](https://shadows.mivareadythemes.com/) | [Installation Instructions](show-related/install.md)
 * **Subscription:** [Code](subscriptions) | [Installation Instructions](subscriptions/install.md)
 * **A11y Tabs:** [Code](tabs) | [Demonstration](https://shadows.mivareadythemes.com/product-1.html) | [Installation Instructions](tabs/install.md)

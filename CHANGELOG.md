@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2021-02-09
+#### Added
+- [Show Password](show-password)
+
 ## 2020-09-28
 #### Updated
 - [Quantify Extension](quantify)
