@@ -34,6 +34,8 @@
 				let input = inputs[0];
 				let value = parseInt(input.value);
 				let action = button.getAttribute('data-action');
+				let min = button.getAttribute('data-min');
+				let max = button.getAttribute('data-max');
 				let changed = document.createEvent('HTMLEvents');
 
 				changed.initEvent('change', true, false);
@@ -45,7 +47,10 @@
 					 * THIS CAN BE USED TO SET A MINIMUM QUANTITY
 					 * value > 5 ? value - 1 : 5;
 					 */
-					input.value = value > 1 ? value - 1 : 1;
+					if(min && value <= min)
+						input.value = min
+					else
+						input.value = value > 1 ? value - 1 : 1;
 					input.dispatchEvent(changed);
 					allowRemoveUpdate();
 				}
@@ -54,7 +59,10 @@
 					 * THIS CAN BE USED TO SET A MAXIMUM QUANTITY
 					 * value < 100 ? value + 1 : 100;
 					 */
-					input.value = value + 1;
+					if(max && value >= max)
+						input.value = max
+				 	else
+						input.value = value + 1;
 					input.dispatchEvent(changed);
 					allowRemoveUpdate();
 				}
