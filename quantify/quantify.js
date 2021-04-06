@@ -34,7 +34,15 @@
 				let input = inputs[0];
 				let value = parseInt(input.value);
 				let action = button.getAttribute('data-action');
+				let incriment = button.getAttribute('data-incriment');
+				let min = button.getAttribute('data-min');
+				let max = button.getAttribute('data-max');
 				let changed = document.createEvent('HTMLEvents');
+
+				// If they dont set an incriment or its not a number we set it to default of 1
+				if(!incriment || isNaN(incriment)){
+					incriment = 1;
+				}
 
 				changed.initEvent('change', true, false);
 				event.stopPropagation();
@@ -45,7 +53,10 @@
 					 * THIS CAN BE USED TO SET A MINIMUM QUANTITY
 					 * value > 5 ? value - 1 : 5;
 					 */
-					input.value = value > 1 ? value - 1 : 1;
+					if(min && value <= min)
+						input.value = min
+					else
+						input.value = value > incriment ? value - incriment : incriment;
 					input.dispatchEvent(changed);
 					allowRemoveUpdate();
 				}
@@ -54,7 +65,10 @@
 					 * THIS CAN BE USED TO SET A MAXIMUM QUANTITY
 					 * value < 100 ? value + 1 : 100;
 					 */
-					input.value = value + 1;
+					if(max && value >= max)
+						input.value = max
+				 	else
+						input.value = value + incriment;
 					input.dispatchEvent(changed);
 					allowRemoveUpdate();
 				}
