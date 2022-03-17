@@ -1,4 +1,4 @@
-# Fasten Header Installation
+# Quantify Installation
 
 If your ReadyTheme did not come with the Quantify extension pre-installed, you can add it to your site by performing the following steps.
 
@@ -13,6 +13,17 @@ If your ReadyTheme did not come with the Quantify extension pre-installed, you c
 - Update your `gulpfile.js` file to include `buildPathExtensions + '/quantify/quantify.js'` to your `let extensions` variable.
 
 
+### Initialize the extension
+Within `build/ui/theme.js`, locate `init: function () {` and append this code:
+
+```javascript
+/**
+ * Initialize Quantify extension
+ */
+quantify.init();
+```
+
+
 ### Add to the Product Page
 You will need to replace the quantity `input` in the product display layout with the following:
 ```html
@@ -20,7 +31,7 @@ You will need to replace the quantity `input` in the product display layout with
 	<label class="c-form-label u-text-bold u-font-small u-color-gray-40 is-required" for="l-quantity">Qty</label>
 	<div class="x-quantify c-control-group t-quantify u-font-small" data-hook="quantify">
 		<button class="c-button c-control-group__button u-bg-white u-color-gray-40 u-icon-subtract" data-action="decrement" aria-label="Decrease Quantity"></button>
-		<input id="l-quantity" class="c-form-input c-control-group__field u-text-center u-color-gray-40" type="text" inputmode="decimal" name="Quantity" value="1">
+		<input id="l-quantity" class="c-form-input c-control-group__field u-text-center u-color-gray-40" data-max="" data-min="1" data-step="1" type="text" inputmode="decimal" name="Quantity" value="1">
 		<button class="c-button c-control-group__button u-bg-white u-color-gray-40 u-icon-add" data-action="increment" aria-label="Increase Quantity"></button>
 	</div>
 </div>
@@ -38,7 +49,7 @@ You will need to replace the quantity `input` in the basket contents with the fo
 				<span class="u-icon-subtract" aria-hidden="true"></span>
 				<span class="u-hide-visually">Decrease Quantity/Remove</span>
 			</button>
-			<input id="l-quantity-&mvte:group:group_id;" class="c-form-input c-control-group__field u-text-bold u-text-center" data-group="group-&mvte:group:group_id;" data-hook="group-quantity" type="text" inputmode="decimal" name="Quantity" value="&mvt:group:quantity;" required>
+			<input id="l-quantity-&mvte:group:group_id;" class="c-form-input c-control-group__field u-text-bold u-text-center" data-max="" data-min="1" data-step="1" data-group="group-&mvte:group:group_id;" data-hook="group-quantity" type="text" inputmode="decimal" name="Quantity" value="&mvt:group:quantity;" required>
 			<button class="c-button c-control-group__button u-bg-white u-color-gray-30" data-action="increment">
 				<span class="u-icon-add" aria-hidden="true"></span>
 				<span class="u-hide-visually">Increase Quantity</span>

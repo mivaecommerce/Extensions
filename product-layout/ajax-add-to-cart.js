@@ -11,27 +11,28 @@
 const addToCart = (function (document) {
 	'use strict';
 
-	let publicMethods = {}; // Placeholder for public methods
+	const publicMethods = {}; // Placeholder for public methods
 
 	/**
 	 * Initialize the plugin
 	 * @public
 	 */
 	publicMethods.init = function () {
-		let purchaseButton = document.querySelector('[data-hook="add-to-cart"]');
+		const purchaseButton = document.querySelector('[data-hook="add-to-cart"]');
 
 		if (!document.body.contains(purchaseButton)) {
 			return;
 		}
 
-		let purchaseButtonText = (purchaseButton.nodeName.toLowerCase() === 'input') ? purchaseButton.value : purchaseButton.textContent;
-		let purchaseForm = document.querySelector('[data-hook="purchase"]');
-		let purchaseFormActionInput = purchaseForm.querySelector('input[name="Action"]');
-		let responseMessage = document.querySelector('[data-hook="purchase-message"]');
-		let miniBasketCount = document.querySelectorAll('[data-hook~="mini-basket-count"]');
-		let miniBasketAmount = document.querySelectorAll('[data-hook~="mini-basket-amount"]');
+		const purchaseButtonText = (purchaseButton.nodeName.toLowerCase() === 'input') ? purchaseButton.value : purchaseButton.textContent;
+		const purchaseForm = document.querySelector('[data-hook="purchase"]');
+		const purchaseFormActionInput = purchaseForm.querySelector('input[name="Action"]');
+		const responseMessage = document.querySelector('[data-hook="purchase-message"]');
+		const miniBasketCount = document.querySelectorAll('[data-hook~="mini-basket-count"]');
+		const miniBasketAmount = document.querySelectorAll('[data-hook~="mini-basket-amount"]');
+		const requiredFields = purchaseForm.querySelectorAll('[required]');
 
-		purchaseForm.addEventListener('submit', function (evt) {
+		purchaseButton.addEventListener('click', function (evt) {
 			if (purchaseFormActionInput.value !== 'ADPR') {
 				return;
 			}
@@ -42,10 +43,47 @@ const addToCart = (function (document) {
 			purchaseForm.action = purchaseButton.getAttribute('data-action');
 			purchaseFormActionInput.value = 'ADPR';
 
-			let data = new FormData(purchaseForm);
-			let request = new XMLHttpRequest(); // Set up our HTTP request
+			const data = new FormData(purchaseForm);
+			const request = new XMLHttpRequest(); // Set up our HTTP request
 
 			purchaseForm.setAttribute('data-status', 'idle');
+
+			for (let i = 0; i < requiredFields.length; i++) {
+				let field = requiredFields[i];
+
+				field.setCustomValidity('');
+
+				if (!field.validity.valid) {
+					if (field.type === 'checkbox') {
+						field.focus();
+						field.setCustomValidity('Please check this box if you want to proceed.');
+						field.reportValidity();
+						purchaseForm.setAttribute('data-status', 'submitting');
+						break;
+					}
+					else if (field.type === 'radio') {
+						field.focus();
+						field.setCustomValidity('Please select one of these options.');
+						field.reportValidity();
+						purchaseForm.setAttribute('data-status', 'submitting');
+						break;
+					}
+					else if (field.type.indexOf('select') !== -1) {
+						field.focus();
+						field.setCustomValidity('Please select an item in the list.');
+						field.reportValidity();
+						purchaseForm.setAttribute('data-status', 'submitting');
+						break;
+					}
+					else if (field.type === 'text' || field.type === 'textarea') {
+						field.focus();
+						field.setCustomValidity('Please fill out this field.');
+						field.reportValidity();
+						purchaseForm.setAttribute('data-status', 'submitting');
+						break;
+					}
+				}
+			}
 
 			if (purchaseForm.getAttribute('data-status') !== 'submitting') {
 				purchaseForm.setAttribute('data-status', 'submitting');
@@ -73,9 +111,9 @@ const addToCart = (function (document) {
 						let response = request.response;
 
 						if (response.body.id === 'js-BASK') {
-							let basketData = response.querySelector('[data-hook="mini-basket"]');
-							let basketCount = basketData.getAttribute('data-item-count');
-							let basketSubtotal = basketData.getAttribute('data-subtotal');
+							const basketData = response.querySelector('[data-hook="mini-basket"]');
+							const basketCount = basketData.getAttribute('data-item-count');
+							const basketSubtotal = basketData.getAttribute('data-subtotal');
 
 							if (miniBasketCount) {
 								for (let mbcID = 0; mbcID < miniBasketCount.length; mbcID++) {
@@ -106,8 +144,8 @@ const addToCart = (function (document) {
 							}
 						}
 						else if (response.body.id === 'js-PATR') {
-							let findRequired = purchaseForm.querySelectorAll('.is-required');
-							let missingAttributes = [];
+							const findRequired = purchaseForm.querySelectorAll('.is-required');
+							const missingAttributes = [];
 
 							for (let id = 0; id < findRequired.length; id++) {
 								missingAttributes.push(' ' + findRequired[id].title);
