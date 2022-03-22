@@ -1,10 +1,20 @@
+/**
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ |q|u|a|n|t|i|f|y|
+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ *
+ * This extension allows for the use of buttons to increase/decrease item
+ * quantities on the product and basket pages. When used on the basket page,
+ * the decrease button becomes a remove button if the quantity is 1.
+ */
+
 const quantify = (function () {
 	'use strict';
 
 	const quantifyAPI = {};
 
-	const allowRemoveUpdate = function () {
-		let quantities = document.querySelectorAll('[data-hook="group-quantity"]');
+	const allowRemoveUpdate = function (section) {
+		let quantities = section.querySelectorAll('[data-hook="group-quantity"]');
 
 		function toggleRemove(input, quantity) {
 			if (parseInt(quantity) > 1) {
@@ -28,7 +38,7 @@ const quantify = (function () {
 					clearTimeout(updateTimeout);
 					updateTimeout = setTimeout(function () {
 						toggleRemove(input, input.value);
-						groupSubmit(event, input);
+						groupSubmit(event, input, section);
 					}, 250);
 				});
 
@@ -38,23 +48,23 @@ const quantify = (function () {
 					clearTimeout(updateTimeout);
 					updateTimeout = setTimeout(function () {
 						toggleRemove(input, input.value);
-						groupSubmit(event, input);
+						groupSubmit(event, input, section);
 					}, 250);
 				});
 			}
 		}
 	}
 
-	allowRemoveUpdate();
+	allowRemoveUpdate(document);
 
-	const groupSubmit = function (event, quantity) {
+	const groupSubmit = function (event, quantity, section) {
 		if (event.key !== 8 && event.key !== 37 && event.key !== 38 && event.key !== 39 && event.key !== 40 && event.key !== 46 && quantity.value !== '') {
-			document.querySelector('[data-hook="' + event.target.getAttribute('data-group') + '"]').submit();
+			section.querySelector('[data-hook="' + event.target.getAttribute('data-group') + '"]').submit();
 		}
 	}
 
-	quantifyAPI.init = function () {
-		const adjusters = document.querySelectorAll('[data-hook="quantify"]');
+	quantifyAPI.init = function (section) {
+		const adjusters = section.querySelectorAll('[data-hook="quantify"]');
 
 		if (adjusters) {
 			for (let id = 0; id < adjusters.length; id++) {
@@ -102,7 +112,7 @@ const quantify = (function () {
 								input.value = value > step ? value - step : step;
 							}
 							input.dispatchEvent(changed);
-							allowRemoveUpdate();
+							allowRemoveUpdate(section);
 						}
 						else if (action === 'increment') {
 							if (max !== undefined && !isNaN(max)) {
@@ -117,12 +127,17 @@ const quantify = (function () {
 								input.value = value + step;
 							}
 							input.dispatchEvent(changed);
-							allowRemoveUpdate();
+							allowRemoveUpdate(section);
 						}
 					}
 				});
 			}
 		}
+	};
+
+	quantifyAPI.restore = function (section) {
+		allowRemoveUpdate(section);
+		quantifyAPI.init(section);
 	};
 
 	return quantifyAPI;
