@@ -20,7 +20,7 @@ Within `build/ui/theme.js`, locate `init: function () {` and append this code:
 /**
  * Initialize Quantify extension
  */
-quantify.init();
+quantify.init(document);
 ```
 
 
