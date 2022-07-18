@@ -53,3 +53,6 @@ To create an A11y Tabs element, follow this layout example:
     </section>
 </div>
 ```
+
+### Using A11y Tabs in product descriptions
+By default, Shadows will display all entries in the Product Tabs custom field group. If you would like to create new tabs to display on the product page, the code you use for the new field must start with `tabs_` and you will assign it to the "Product Tabs" group like the "Reviews" and "Specifications" tabs are which are part pf the initial Shadows installation. 
