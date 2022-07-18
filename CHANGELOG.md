@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022-07-18
+- [A11y Tabs](tabs)
+  - Updated `install.md` to include instructions on adding product tabs via custom product fields.
+
 ## 2022-03-ZZ
 - [Product Layout](product-layout)
   - Updated `ajax-add-to-cart.js` to match the current release included in Shadows.
