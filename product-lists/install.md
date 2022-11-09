@@ -7,4 +7,4 @@ _**Note:** You may need to rollback your page code to earlier version or copy th
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/product-lists/`
 - Add [_product-lists.scss](_product-lists.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "product-lists/product-lists";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "product-lists/product-lists";`

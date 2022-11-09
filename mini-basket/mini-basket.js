@@ -1,22 +1,15 @@
 /**
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |m|i|n|i|B|a|s|k|e|t|
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ * EXTENSIONS / MINI-BASKET / MINI-BASKET
  *
- * This is an extension to use the mini-basket functionality of Miva in an
- * off-canvas method.
+ * This is the default, off-canvas, mini-basket functionality of Miva.
+ *
+ * Version: 10.05.00
  */
 
-const miniBasket = (function (document) {
-	'use strict';
-
+const miniBasket = (document => {
 	let mbElement = document.querySelector('[data-hook="mini-basket"]');
 	let mbContent = mbElement.querySelector('[data-hook="mini-basket__content"]');
-	let publicMethods = {}; // Placeholder for public methods
-	let defaults = {
-		closeOnBackgroundClick: true,
-		closeOnEscClick: true
-	};
+	let publicMethods = {};
 	let openTrigger;
 
 	/**
@@ -25,25 +18,21 @@ const miniBasket = (function (document) {
 	 * @private
 	 * @returns {Object}	Merged values of defaults and options
 	 */
-	let extend = function () {
+	let extend = function (...args) {
 
-		// Variables
 		let extended = {};
 		let deep = false;
 		let i = 0;
-		let length = arguments.length;
+		let length = args.length;
 
-		// Check if a deep merge
-		if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
-			deep = arguments[0];
+		if (Object.prototype.toString.call(args[0]) === '[object Boolean]') {
+			deep = args[0];
 			i++;
 		}
 
-		// Merge the object into the extended object
-		let merge = function (obj) {
+		let merge = obj => {
 			for (let prop in obj) {
 				if (Object.prototype.hasOwnProperty.call(obj, prop)) {
-					// If deep merge and property is an object, merge properties
 					if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
 						extended[prop] = extend(true, extended[prop], obj[prop]);
 					}
@@ -54,9 +43,8 @@ const miniBasket = (function (document) {
 			}
 		};
 
-		// Loop through each object and conduct a merge
 		for (; i < length; i++) {
-			let obj = arguments[i];
+			let obj = args[i];
 			merge(obj);
 		}
 
@@ -68,23 +56,28 @@ const miniBasket = (function (document) {
 	 * Toggle the visibility of the mini-basket
 	 * @private
 	 */
-	let toggleMenu = function (event, display) {
-		event.preventDefault();
-		event.stopPropagation();
-		if (display === 'open') {
-			mbElement.parentElement.hidden = false;
+	let toggleMenu = (event, display) => {
+		if (mivaJS.miniBasket.use) {
+			event.preventDefault();
+			event.stopPropagation();
+			if (display === 'open') {
+				mbElement.parentElement.hidden = false;
+			}
+
+			setTimeout(() => {
+				document.documentElement.classList.toggle('u-overflow-hidden');
+				mbElement.classList.toggle('x-mini-basket--open');
+				a11yHelper();
+			}, 50);
+
+			if (display === 'close') {
+				setTimeout(() => {
+					mbElement.parentElement.hidden = true;
+				}, 300);
+			}
 		}
-
-		setTimeout(function () {
-			document.documentElement.classList.toggle('u-overflow-hidden');
-			mbElement.classList.toggle('x-mini-basket--open');
-			a11yHelper();
-		}, 50);
-
-		if (display === 'close') {
-			setTimeout(function () {
-				mbElement.parentElement.hidden = true;
-			}, 300);
+		else {
+			document.location = event.target.dataset.link;
 		}
 	};
 
@@ -92,7 +85,7 @@ const miniBasket = (function (document) {
 	 * Manage focus for accessibility
 	 * @private
 	 */
-	let a11yHelper = function () {
+	let a11yHelper = () => {
 		const FOCUSABLE_ELEMENTS = [
 			'a[href]',
 			'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
@@ -137,7 +130,7 @@ const miniBasket = (function (document) {
 		if (mbElement.classList.contains('x-mini-basket--open')) {
 			openTrigger = document.activeElement;
 			mbContent.focus();
-			mbContent.addEventListener('keydown', function (keyEvent) {
+			mbContent.addEventListener('keydown', keyEvent => {
 				handleKeyboard(keyEvent);
 			});
 		}
@@ -151,7 +144,7 @@ const miniBasket = (function (document) {
 	 * Toggle the visibility of the mini-basket
 	 * @public
 	 */
-	publicMethods.toggle = function (event, display) {
+	publicMethods.toggle = (event, display) => {
 		toggleMenu(event, display);
 	};
 
@@ -159,35 +152,24 @@ const miniBasket = (function (document) {
 	 * Initialize the plugin
 	 * @public
 	 */
-	publicMethods.init = function (options) {
-		// Merge user options with defaults
-		let settings = extend(defaults, options || {});
-
-		// Element.matches() Polyfill
-		if (!Element.prototype.matches) {
-			Element.prototype.matches = Element.prototype.msMatchesSelector;
-		}
-
+	publicMethods.init = options => {
 		mbElement.parentElement.hidden = true;
 
-		// Open the mini-basket when clicking the trigger
-		document.addEventListener('click', function (event) {
+		document.querySelector('[data-hook="site-header"]').addEventListener('click', event => {
 			if (!event.target.closest('[data-hook~="open-mini-basket"]')) {
 				return;
 			}
 			toggleMenu(event, 'open');
 		}, false);
 
-		// Close the mini-basket when clicking any 'close' triggers
-		document.addEventListener('click', function (event) {
+		document.querySelector('[data-hook="mini-basket"]').addEventListener('click', event => {
 			if (!event.target.closest('[data-hook~="close-mini-basket"]')) {
 				return;
 			}
 			toggleMenu(event, 'close');
 		}, false);
 
-		// If enabled, close the mini-basket when clicking the background
-		if (settings.closeOnBackgroundClick) {
+		if (mivaJS.miniBasket.use && mivaJS.miniBasket.closeOnBackground) {
 			mbElement.addEventListener('click', function (event) {
 				if (event.target === this) {
 					toggleMenu(event, 'close');
@@ -195,13 +177,12 @@ const miniBasket = (function (document) {
 			}, false);
 		}
 
-		// If enabled, close the mini-basket when the `Esc` key is pressed
-		if (settings.closeOnEscClick) {
-			window.addEventListener('keydown', function (event) {
+		if (mivaJS.miniBasket.use && mivaJS.miniBasket.closeOnEsc) {
+			window.addEventListener('keydown', event => {
 				let escKey = (event.key === 'Escape');
 
 				if (event.defaultPrevented) {
-					return; // Do nothing if the event was already processed
+					return;
 				}
 
 				if (!escKey) {
@@ -222,5 +203,4 @@ const miniBasket = (function (document) {
 	 * Public APIs
 	 */
 	return publicMethods;
-
-}(document));
+})(document);

@@ -6,7 +6,7 @@ If your ReadyTheme did not come with the A11y Tabs extension pre-installed, you 
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/tabs/`
 - Add [_a11y-tabs.scss](_a11y-tabs.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "fasten-header/a11y-tabs";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "fasten-header/a11y-tabs";`
 
 
 ### Add the JavaScript

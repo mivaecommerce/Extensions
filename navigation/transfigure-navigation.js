@@ -1,15 +1,21 @@
-(function ($, window, document) {
-	'use strict';
+/**
+ * EXTENSIONS / NAVIGATION / TRANSFIGURE NAVIGATION
+ *
+ * This extension is the default, primary navigation layout for Shadows. On larger screens, it
+ * is a horizontal navigation with drop-downs and fly-outs for categories. On smaller screens, it
+ * is off-canvas with internal scrolling.
+ *
+ * Version: 10.05.00
+ */
 
-	let touchCapable = 'ontouchstart' in window || window.DocumentTouch && document instanceof DocumentTouch || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-
+(($, window, document) => {
 	/**
 	 * Double Tap To Go [http://osvaldas.info/drop-down-navigation-responsive-and-touch-friendly]
 	 * By: Osvaldas Valutis [http://www.osvaldas.info]
 	 * License: MIT
 	 */
 	$.fn.doubleTapToGo = function () {
-		if (touchCapable) {
+		if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
 			this.each(function () {
 				let curItem = false;
 
@@ -22,9 +28,9 @@
 					}
 				});
 
-				$(document).on('click touchstart MSPointerDown', function (event) {
-					let resetItem = true,
-						parents = $(event.target).parents();
+				$(document).on('click touchstart', ({target}) => {
+					let resetItem = true;
+					let parents = $(target).parents();
 
 					for (let i = 0; i < parents.length; i++) {
 						if (parents[i] === curItem[0]) {
@@ -97,11 +103,11 @@
 		let triggerElement = $(this);
 
 		triggerElement.on('mouseenter', function () {
-			let parentElement = $(this),
-				childElement = parentElement.find('ul').first(),
-				grandchildElement = childElement.find('ul').first(),
-				childOffsetWidth = childElement.offset().left + childElement.width(),
-				documentWidth = container ? container.outerWidth() : document.documentElement.clientWidth;
+			let parentElement = $(this);
+			let childElement = parentElement.find('ul').first();
+			let grandchildElement = childElement.find('ul').first();
+			let childOffsetWidth = childElement.offset().left + childElement.width();
+			let documentWidth = container ? container.outerWidth() : document.documentElement.clientWidth;
 
 			if (grandchildElement) {
 				childOffsetWidth = childOffsetWidth + grandchildElement.getRealDimensions().width;
@@ -137,9 +143,9 @@
 		let clientPort = document.documentElement.clientWidth;
 		let waitForIt;
 
-		window.addEventListener('resize', function () {
+		window.addEventListener('resize', () => {
 			if (!waitForIt) {
-				waitForIt = setTimeout(function () {
+				waitForIt = setTimeout(() => {
 					waitForIt = null;
 					clientPort = document.documentElement.clientWidth;
 
@@ -167,13 +173,13 @@
 			});
 		}
 
-		document.querySelector('[data-hook="open-main-menu"]').addEventListener('click', function (event) {
+		document.querySelector('[data-hook="open-main-menu"]').addEventListener('click', event => {
 			event.preventDefault();
 			document.documentElement.classList.add('has-open-main-menu');
 			navigationExtension.classList.add('is-open');
 		});
 
-		document.querySelector('[data-hook="close-main-menu"]').addEventListener('click', function (event) {
+		document.querySelector('[data-hook="close-main-menu"]').addEventListener('click', event => {
 			event.preventDefault();
 			document.documentElement.classList.remove('has-open-main-menu');
 			navigationExtension.classList.remove('is-open');
@@ -181,10 +187,18 @@
 
 		if (clientPort < 960) {
 			showSubnavigation();
+
+			navigationExtension.addEventListener('click', event => {
+				if (event.target === navigationExtension) {
+					event.preventDefault();
+					document.documentElement.classList.remove('has-open-main-menu');
+					navigationExtension.classList.remove('is-open');
+				}
+			});
 		}
 		else {
 			if (!!window.MSInputMethodContext && !!document.documentMode) {
-				topLevelLinks.forEach(function (link) {
+				topLevelLinks.forEach(link => {
 					if (link.nextElementSibling) {
 						link.addEventListener('focus', function () {
 							this.parentElement.classList.add('focus-within');
@@ -195,7 +209,7 @@
 						const lastLinkIndex = subMenuLinks.length - 1;
 						const lastLink = subMenuLinks[lastLinkIndex];
 
-						lastLink.addEventListener('blur', function () {
+						lastLink.addEventListener('blur', () => {
 							link.parentElement.classList.remove('focus-within');
 						});
 					}

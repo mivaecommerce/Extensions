@@ -6,7 +6,7 @@ If your ReadyTheme did not come with the Show Password extension pre-installed, 
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/show-password/`
 - Add [_show-password.scss](_show-password.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "show-password/show-password";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "show-password/show-password";`
 
 
 ### Add the JavaScript

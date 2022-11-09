@@ -1,4 +1,6 @@
 /**
+ * EXTENSIONS / PRODUCT LAYOUT / AJAX ADD-TO-CART
+ *
  * When called from a `theme.js` file on a product page, this extension will
  * work with the default page code to add a product to the cart utilizing an
  * AJAX call to the form processor.
@@ -7,17 +9,17 @@
  * page was reached and displaying messages accordingly. If the store is also
  * utilizing the `mini-basket` extension, said extension will be triggered for
  * display upon successfully adding a product to the cart.
+ *
+ * Version: 10.05.00
  */
-const addToCart = (function (document) {
-	'use strict';
-
+const addToCart = (document => {
 	const publicMethods = {}; // Placeholder for public methods
 
 	/**
 	 * Initialize the plugin
 	 * @public
 	 */
-	publicMethods.init = function () {
+	publicMethods.init = () => {
 		const purchaseButton = document.querySelector('[data-hook="add-to-cart"]');
 
 		if (!document.body.contains(purchaseButton)) {
@@ -32,7 +34,7 @@ const addToCart = (function (document) {
 		const miniBasketAmount = document.querySelectorAll('[data-hook~="mini-basket-amount"]');
 		const requiredFields = purchaseForm.querySelectorAll('[required]');
 
-		purchaseButton.addEventListener('click', function (evt) {
+		purchaseButton.addEventListener('click', evt => {
 			if (purchaseFormActionInput.value !== 'ADPR') {
 				return;
 			}
@@ -48,57 +50,35 @@ const addToCart = (function (document) {
 
 			purchaseForm.setAttribute('data-status', 'idle');
 
-			for (let i = 0; i < requiredFields.length; i++) {
-				let field = requiredFields[i];
-
+			for (let field of requiredFields) {
 				field.setCustomValidity('');
 
 				if (!field.validity.valid) {
 					if (field.type === 'checkbox') {
 						field.focus();
-						if (HTMLInputElement.prototype.reportValidity) {
-							field.setCustomValidity('Please check this box if you want to proceed.');
-							field.reportValidity();
-						}
-						else {
-							alert(field.validationMessage);
-						}
+						field.setCustomValidity('Please check this box if you want to proceed.');
+						field.reportValidity();
 						purchaseForm.setAttribute('data-status', 'submitting');
 						break;
 					}
 					else if (field.type === 'radio') {
 						field.focus();
-						if (HTMLInputElement.prototype.reportValidity) {
-							field.setCustomValidity('Please select one of these options.');
-							field.reportValidity();
-						}
-						else {
-							alert(field.validationMessage);
-						}
+						field.setCustomValidity('Please select one of these options.');
+						field.reportValidity();
 						purchaseForm.setAttribute('data-status', 'submitting');
 						break;
 					}
-					else if (field.type.indexOf('select') !== -1) {
+					else if (field.type.includes('select')) {
 						field.focus();
-						if (HTMLInputElement.prototype.reportValidity) {
-							field.setCustomValidity('Please select an item in the list.');
-							field.reportValidity();
-						}
-						else {
-							alert(field.validationMessage);
-						}
+						field.setCustomValidity('Please select an item in the list.');
+						field.reportValidity();
 						purchaseForm.setAttribute('data-status', 'submitting');
 						break;
 					}
 					else if (field.type === 'text' || field.type === 'textarea') {
 						field.focus();
-						if (HTMLInputElement.prototype.reportValidity) {
-							field.setCustomValidity('Please fill out this field.');
-							field.reportValidity();
-						}
-						else {
-							alert(field.validationMessage);
-						}
+						field.setCustomValidity('Please fill out this field.');
+						field.reportValidity();
 						purchaseForm.setAttribute('data-status', 'submitting');
 						break;
 					}
@@ -119,7 +99,7 @@ const addToCart = (function (document) {
 				responseMessage.innerHTML = '';
 
 				// Setup our listener to process completed requests
-				request.onreadystatechange = function () {
+				request.onreadystatechange = () => {
 					// Only run if the request is complete
 					if (request.readyState !== 4) {
 						return;
@@ -137,7 +117,13 @@ const addToCart = (function (document) {
 
 							if (miniBasketCount) {
 								for (let mbcID = 0; mbcID < miniBasketCount.length; mbcID++) {
+									let miniBasketButton = miniBasketCount[mbcID].parentElement;
+									let miniBasketIcon = miniBasketCount[mbcID].previousElementSibling;
+
 									miniBasketCount[mbcID].textContent = basketCount; // Update mini-basket quantity (display only)
+									if (miniBasketButton && miniBasketButton.matches('[data-hook="open-mini-basket"]')) {
+										miniBasketIcon.classList.add('u-icon-cart-full');
+									}
 								}
 							}
 
@@ -147,10 +133,10 @@ const addToCart = (function (document) {
 								}
 							}
 
-							if (typeof miniBasket !== 'undefined' && mivaJS.showMiniBasket === 1) {
+							if (typeof miniBasket !== 'undefined' && mivaJS.miniBasket.use) {
 								document.querySelector('[data-hook="mini-basket"]').innerHTML = response.querySelector('[data-hook="mini-basket"]').innerHTML;
 
-								setTimeout(function () {
+								setTimeout(() => {
 									document.querySelector('[data-hook="open-mini-basket"]').click();
 								}, 100);
 							}
@@ -168,10 +154,10 @@ const addToCart = (function (document) {
 							const missingAttributes = [];
 
 							for (let id = 0; id < findRequired.length; id++) {
-								missingAttributes.push(' ' + findRequired[id].title);
+								missingAttributes.push(` ${findRequired[id].title}`);
 							}
 
-							responseMessage.innerHTML = '<div class="x-messages x-messages--warning">All <em class="u-color-red">Required</em> options have not been selected.<br />Please review the following options: <span class="u-color-red">' + missingAttributes + '</span>.</div>';
+							responseMessage.innerHTML = `<div class="x-messages x-messages--warning">All <em class="u-color-red">Required</em> options have not been selected.<br />Please review the following options: <span class="u-color-red">${missingAttributes}</span>.</div>`;
 						}
 						else if (response.body.id === 'js-PLMT') {
 							responseMessage.innerHTML = '<div class="x-messages x-messages--warning">We do not have enough of the combination you have selected.<br />Please adjust your quantity.</div>';
@@ -218,5 +204,4 @@ const addToCart = (function (document) {
 	 * Public APIs
 	 */
 	return publicMethods;
-
-}(document));
+})(document);

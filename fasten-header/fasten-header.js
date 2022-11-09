@@ -1,17 +1,13 @@
 /**
- +-+-+-+-+-+-+-+-+-+-+-+-+-+
- |f|a|s|t|e|n| |h|e|a|d|e|r|
- +-+-+-+-+-+-+-+-+-+-+-+-+-+
+ * EXTENSIONS / FASTEN HEADER / FASTEN HEADER
  *
  * This extension is a more refined version of a classic "sticky" header function.
+ *
+ * Version: 10.05.00
  */
 
-function fastenHeader(position, siteHeader) {
-	'use strict';
-
-	let siteHeaderHeight = siteHeader.offsetHeight;
-
-	if (position > siteHeaderHeight) {
+function fastenHeader(position, {offsetHeight}) {
+	if (position > offsetHeight) {
 		document.body.classList.add('x-fasten-header--is-active');
 	}
 	else {
@@ -19,21 +15,19 @@ function fastenHeader(position, siteHeader) {
 	}
 }
 
-if ((sessionStorage.getItem('USER_CAN_HOVER') === null || sessionStorage.getItem('USER_CAN_HOVER') === 'true') && document.querySelector('[data-hook="fasten-header"]')) {
+if (window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches && _hook('fasten-header')) {
 	const siteHeader = document.querySelector('[data-hook="site-header"]');
 	let animationTimeout;
 
-	fastenHeader(window.pageYOffset || document.documentElement.scrollTop, siteHeader);
+	fastenHeader(window.scrollY, siteHeader);
 
-	window.addEventListener('scroll', function () {
-		'use strict';
-
+	window.addEventListener('scroll', () => {
 		if (animationTimeout) {
 			window.cancelAnimationFrame(animationTimeout);
 		}
 
-		animationTimeout = window.requestAnimationFrame(function () {
-			fastenHeader(window.pageYOffset || document.documentElement.scrollTop, siteHeader);
+		animationTimeout = window.requestAnimationFrame(() => {
+			fastenHeader(window.scrollY, siteHeader);
 		});
 	}, false);
 }

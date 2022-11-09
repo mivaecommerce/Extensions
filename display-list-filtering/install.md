@@ -5,4 +5,4 @@ If your ReadyTheme did not come with the default Display List Filtering extensio
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/display-list-filtering/`
 - Add [_display-list-filtering.scss](_display-list-filtering.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "display-list-filtering/display-list-filtering";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "display-list-filtering/display-list-filtering";`

@@ -5,7 +5,7 @@ If your ReadyTheme did not come with the Dialog extension pre-installed, you can
 
 ### Add the CSS
 - In the core build directory, `build/core/css/components/`, add the [_dialog.scss](_dialog.scss) file.
-- Update your `build/core/core.scss` file to include `@import "components/dialog";`
+- Update your `build/core/core.scss` file to include `@forward "components/dialog";`
 
 
 ### Add the JavaScript

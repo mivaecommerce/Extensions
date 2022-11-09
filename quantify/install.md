@@ -5,7 +5,7 @@ If your ReadyTheme did not come with the Quantify extension pre-installed, you c
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/quantify/`
 - Add [_quantify.scss](_quantify.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "quantify/quantify";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "quantify/quantify";`
 
 
 ### Add the JavaScript

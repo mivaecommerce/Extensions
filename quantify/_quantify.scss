@@ -7,18 +7,36 @@
  * quantities on the product and basket pages. When used on the basket page,
  * the decrease button becomes a remove button if the quantity is 1.
  */
-.x-quantify {}
+.x-quantify {
+	border: var(--default-border-width) solid var(--gray-400);
+	border-radius: var(--default-border-radius);
+	display: grid;
+	grid-template-columns: 2.5rem 1fr 2.5rem;
+	grid-template-rows: 1fr;
+	height: 2.5rem;
+	width: 7.5rem;
+}
 
-	.x-quantify .c-control-group__button {
-		border-color: $color-gray-20;
-		user-select: none;
-	}
+.x-quantify :is(.c-button, .c-form-input) {
+	align-self: stretch;
+	border: 0 none;
+	line-height: normal;
+	margin-bottom: 0;
+	outline-offset: calc(-1 * (var(--default-border-width) * 2));
+	padding: 0;
+}
 
-		.x-quantify .c-control-group__button > * {
-			pointer-events: none;
-		}
+.x-quantify button {
+	color: var(--gray-600);
+	font-size: 0.625rem;
+	user-select: none;
+}
 
-	.x-quantify .c-control-group__field {
-		height: auto;
-		border-left-width: 0;
-	}
+.x-quantify button[aria-disabled="true"] {
+	background-color: var(--white);
+	color: var(--gray-400);
+}
+
+.x-quantify button > * {
+	pointer-events: none;
+}

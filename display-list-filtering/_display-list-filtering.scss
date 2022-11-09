@@ -10,9 +10,29 @@
 
 .x-display-list-filtering {
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
+	margin-bottom: var(--default-spacing-unit);
 }
 
-	.x-display-list-filtering__per-page {
-		margin-right: calc(#{$global-spacing-unit} * 2);
-	}
+.x-display-list-filtering :is(.x-display-list-filtering__per-page, .x-display-list-filtering__sort-by, .c-form-list__item, .c-form-label, .c-form-select) {
+	color: var(--gray-600);
+	margin-bottom: 0;
+}
+
+.x-display-list-filtering__per-page {
+	margin-right: calc(var(--default-spacing-unit) * 4);
+}
+
+
+/**
+ * Product List Page Modifications
+ */
+:is(.t-page-ctgy, .t-page-plst, .t-page-srch) :is(.x-display-list-filtering .c-form-select__dropdown) {
+	border: 0 none;
+	color: var(--gray-600);
+	padding: 0;
+}
+
+:is(.t-page-ctgy, .t-page-plst, .t-page-srch) :is(.x-display-list-filtering .c-form-select)::after {
+	right: 0;
+}

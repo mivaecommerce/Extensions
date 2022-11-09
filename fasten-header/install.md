@@ -19,7 +19,7 @@ If your ReadyTheme did not come with the Fasten Header extension pre-installed, 
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/fasten-header/`
 - Add [_fasten-header.scss](_fasten-header.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "fasten-header/fasten-header";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "fasten-header/fasten-header";`
 
 
 ### Add the JavaScript

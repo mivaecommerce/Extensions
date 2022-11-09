@@ -40,7 +40,7 @@ If your ReadyTheme did not come with the Contact extension pre-installed, you ca
 - **_If you are using the developer build, the `scss` file has been included._**
   - Create a new build subdirectory as `build/extensions/contact/`
   - Add [_contact.scss](_contact.scss) to the directory.
-  - Update your `build/extensions/extensions.scss` file to include `@import "contact/contact";`
+  - Update your `build/extensions/extensions.scss` file to include `@forward "contact/contact";`
 
 
 ### Add the JavaScript

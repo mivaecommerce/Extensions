@@ -9,69 +9,133 @@
  * product page, as an auto-suggest feature during checkout, or wherever.
  */
 
-.x-product-list {
-	margin-bottom: $global-spacing-unit;
+.x-product-list,
+.x-subcategory-list {
+	display: grid;
+	gap: calc(var(--default-spacing-unit) * 2);
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-bottom: var(--default-spacing-unit);
+}
+
+.x-subcategory-list {
+	grid-template-columns: repeat(auto-fit, minmax(0, 6.5rem));
+	justify-content: center;
+}
+
+@media (min-width: 60em) {
+	.x-product-list {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+
+	.x-subcategory-list {
+		grid-template-columns: repeat(auto-fit, minmax(0, 9.5rem));
+	}
+}
+
+.x-product-list__heading {
+	margin-bottom: 2em;
+}
+
+.x-product-list__item,
+.x-subcategory-list__item {
+	position: relative;
+}
+
+.x-product-list__item {
+	display: flex;
+}
+
+.x-product-list__figure,
+.x-product-list__figure-caption,
+.x-subcategory-list__figure,
+.x-subcategory-list__figure-caption {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.x-product-list__figure-caption {
+	flex-grow: 1;
+	gap: 1em;
+	justify-content: space-between;
+}
+
+.x-subcategory-list__figure-caption {
+	font-weight: var(--font-medium);
+	text-align: center;
+}
+
+.x-product-list__picture,
+.x-subcategory-list__picture {
+	aspect-ratio: 1;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	width: 100%;
+}
+
+.x-product-list__link,
+.x-subcategory-list__link {
+	text-decoration: none;
+}
+
+.x-product-list__link:hover,
+.x-subcategory-list__link:hover {
+	text-decoration: underline;
+}
+
+.x-product-list__link::before,
+.x-subcategory-list__link::before {
+	bottom: 0;
+	content: '';
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: box-shadow 250ms;
+	z-index: 1;
+}
+
+.x-product-list__name {
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.x-product-list__price {
+	font-size: var(--default-input-font-size);
+}
+
+.x-product-list__price_set {
+	display: inline-flex;
+	gap: 1em;
 }
 
 
-	.x-product-list__heading {
-		margin-bottom: 2em;
+/**
+* Modifications for related products.
+*/
+.x-product-list--related {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 48em) {
+	.x-product-list--related {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
+}
 
-
-	.x-product-list__item {
-		margin-bottom: calc(#{$global-spacing-unit} * 2);
+@media (min-width: 75em) {
+	.x-product-list--related {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 	}
+}
 
-		.x-product-list__link {
-			color: $color-black;
-			transition: ease-in-out 0.3s;
-		}
-
-		.x-product-list__link:hover {
-			color: $color-black--tinted;
-			text-decoration: none;
-		}
-
-			.x-product-list__figure {
-				margin: 0;
-			}
-
-				.x-product-list__image,
-				.x-product-list__name,
-				.x-product-list__price {
-					display: block;
-				}
-
-				.x-product-list__image {
-					margin-bottom: $global-spacing-unit;
-				}
-
-				.x-product-list__name,
-				.x-product-list__price {
-					font-weight: 600;
-				}
-
-				.x-product-list__price {
-					display: inline-block;
-					padding-right: 0.5em;
-					padding-left: 0.5em;
-					color: $color-gray-30;
-					font-size: 0.875rem;
-				}
-
-
-	.x-product-list__action {
-		padding-top: $global-spacing-unit;
+@media (min-width: 90em) {
+	.x-product-list--related {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 	}
-
-	/**
-	* If you are creating a product carousel, add this class to the element.
-	*/
-	.x-product-list--carousel {}
-
-		.x-product-list--carousel .x-product-list__item {
-			margin-bottom: 0;
-			padding-right: 0.5rem;
-			padding-left: 0.5rem;
-		}
+}

@@ -9,73 +9,73 @@
  * 2. Hero images set via background-image should cover and center.
  */
 .x-hero {
-	display: block;
-	position: relative; /* [1] */
 	background-position: center; /* [2] */
 	background-size: cover; /* [2] */
+	display: block;
+	position: relative; /* [1] */
 }
 
 
-	/**
-	 * The caption overlays at the bottom of a Hero, providing space for additional
-	 * content such as titles or logos.
-	 */
-	.x-hero__caption {
-		position: absolute;
-		bottom: 0;
-		padding: $global-spacing-unit 0;
-		width: 100%;
-		text-shadow: 0 0 25px rgba($color-black, 0.25), 1px 1px 1px rgba($color-black, 0.5);
+/**
+ * The caption overlays at the bottom of a Hero, providing space for additional
+ * content such as titles or logos.
+ */
+.x-hero__caption {
+	bottom: 0;
+	padding: var(--default-spacing-unit) 0;
+	position: absolute;
+	text-shadow: 0 0 25px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(0, 0, 0, 0.5);
+	width: 100%;
 
-	}
-
-
-	/**
-	 * Hero video needs to be set to `display: block` to avoid spacing issues.
-	 */
-	.x-hero__video {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: fill;
-	}
+}
 
 
-	/**
-	 * Hero link inherits the Hero `color` to override anchor element styles.
-	 */
-	.x-hero__link {
-		color: inherit;
-	}
+/**
+ * Hero video needs to be set to `display: block` to avoid spacing issues.
+ */
+.x-hero__video {
+	display: block;
+	height: 100%;
+	object-fit: fill;
+	width: 100%;
+}
 
 
-	/**
-	 * As we cannot set a border property over video, borders are implemented
-	 * using pseudo-elements.
-	 */
-	.x-hero--borders::before {
-		display: block;
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		border: calc(#{$global-spacing-unit} / 4) solid rgba($color-white, 0.3);
-		content: "";
-	}
+/**
+ * Hero link inherits the Hero `color` to override anchor element styles.
+ */
+.x-hero__link {
+	color: inherit;
+}
 
 
-	/**
-	 * Make any other content below the Hero overlap upwards.
-	 */
-	.x-hero--overlap {
-		margin-bottom: -10vh;
-	}
+/**
+ * As we cannot set a border property over video, borders are implemented
+ * using pseudo-elements.
+ */
+.x-hero--borders::before {
+	border: calc(var(--default-spacing-unit) / 4) solid rgba(255, 255, 255, 0.3);
+	bottom: 0;
+	content: "";
+	display: block;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
 
 
-	/**
-	* If hero has overlap modifier, shift caption upwards to compensate.
-	*/
-	.x-hero--overlap .x-hero__caption {
-		bottom: 10vh;
-	}
+/**
+ * Make any other content below the Hero overlap upwards.
+ */
+.x-hero--overlap {
+	margin-bottom: -10vh;
+}
+
+
+/**
+* If hero has overlap modifier, shift caption upwards to compensate.
+*/
+.x-hero--overlap .x-hero__caption {
+	bottom: 10vh;
+}

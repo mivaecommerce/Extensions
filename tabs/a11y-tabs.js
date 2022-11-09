@@ -4,54 +4,26 @@
  * This is an accessible tab solution extension based on guidelines documented
  * by Heydon Pickering on the Inclusive Components Pattern Library.
  * https://inclusive-components.design/tabbed-interfaces/
+ *
+ * Version: 10.05.00
  */
 
-const tabbedContent = (function (document) {
-	'use strict';
-
+const tabbedContent = (document => {
 	const publicMethods = {}; // Placeholder for public methods
 
 	/**
 	 * Initialize the plugin
 	 * @public
 	 */
-	publicMethods.init = function () {
+	publicMethods.init = () => {
 		// Get relevant elements and collections
 		const tabbed = document.querySelector('[data-tab-component]');
 		const tabList = tabbed.querySelector('ul');
 		const tabs = tabList.querySelectorAll('a');
 		const panels = tabbed.querySelectorAll('[id^="tab-"]');
-
-		/**
-		 * This is a basic placeholder for the proposed CSS `:focus-visible`
-		 * pseudo-selector [1] and is based on the WICG polyfill [2]. Once
-		 * standardized, this will be updated.
-		 *
-		 * [1] https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo
-		 * [2] https://github.com/WICG/focus-visible
-		 *
-		 * Add the `focus-visible` class to the given element.
-		 * @param {Element} focusedElement
-		 */
-		function addFocusVisibleClass(focusedElement) {
-			if (focusedElement.classList.contains('focus-visible')) {
-				return;
-			}
-			focusedElement.classList.add('focus-visible');
-			focusedElement.setAttribute('data-focus-visible-added', '');
-		}
-
-		/**
-		 * Remove the `focus-visible` class from the given element.
-		 * @param {Element} focusedElement
-		 */
-		function removeFocusVisibleClass(focusedElement) {
-			if (!focusedElement.hasAttribute('data-focus-visible-added')) {
-				return;
-			}
-			focusedElement.classList.remove('focus-visible');
-			focusedElement.removeAttribute('data-focus-visible-added');
-		}
+		let hash = window.location.hash;
+		let targetTab = [...tabs].filter(({href}) => href.includes(hash));
+		let targetPanel = [...panels].filter(({id}) => id === hash.replace('#', ''));
 
 		/**
 		 * The tab switching functionality
@@ -81,19 +53,17 @@ const tabbedContent = (function (document) {
 		tabList.setAttribute('role', 'tablist');
 
 		// Add semantics and remove user focusability for each tab
-		Array.prototype.forEach.call(tabs, function (tab, i) {
+		Array.prototype.forEach.call(tabs, (tab, i) => {
 			tab.setAttribute('role', 'tab');
-			tab.setAttribute('id', 'tab' + (i + 1));
+			tab.setAttribute('id', `tab${i + 1}`);
 			tab.setAttribute('tabindex', '-1');
 			tab.parentNode.setAttribute('role', 'presentation');
 
 			// Handle clicking of tabs for mouse users
-			tab.addEventListener('click', function (clickEvent) {
+			tab.addEventListener('click', clickEvent => {
 				clickEvent.preventDefault();
 				let currentTab = tabList.querySelector('[aria-selected]');
 
-				removeFocusVisibleClass(currentTab);
-				removeFocusVisibleClass(panels[i]);
 				if (clickEvent.currentTarget !== currentTab) {
 					if (window.getComputedStyle(tabbed, '::before').content.replace(/"/g, '') === 'max') {
 						tabbed.scrollIntoView(true);
@@ -104,15 +74,15 @@ const tabbedContent = (function (document) {
 			});
 
 			// Handle keydown events for keyboard users
-			tab.addEventListener('keydown', function (keydownEvent) {
-				if ([37, 39, 40].indexOf(keydownEvent.which) > -1) {
+			tab.addEventListener('keydown', keydownEvent => {
+				if ([37, 39, 40].includes(keydownEvent.which)) {
 					keydownEvent.preventDefault();
 				}
 			}, false);
 
 			// Handle keyup events for keyboard users
-			tab.addEventListener('keyup', function (keyupEvent) {
-				// Get the index of the current tab in the tabs node list
+			tab.addEventListener('keyup', keyupEvent => {
+				// Get the index of the current tab in the tabs' node list
 				let index = Array.prototype.indexOf.call(tabs, keyupEvent.currentTarget);
 				/**
 				 * Work out which key the user is pressing and calculate the new
@@ -126,21 +96,15 @@ const tabbedContent = (function (document) {
 					// If the down key is pressed, move focus to the open panel.
 					if (dir === 'down') {
 						panels[i].focus();
-						removeFocusVisibleClass(keyupEvent.currentTarget);
-						addFocusVisibleClass(panels[i]);
 					}
 					/**
 					 * If the Shift+Tab combination is pressed, remove focus on the
 					 * open panel and return focus to the tab.
 					 */
 					else if (dir === 'reverse') {
-						removeFocusVisibleClass(panels[i]);
-						addFocusVisibleClass(keyupEvent.currentTarget);
 					}
 					// If an arrow key is pressed, switch to the adjacent tab.
 					else if (tabs[dir]) {
-						removeFocusVisibleClass(keyupEvent.currentTarget);
-						addFocusVisibleClass(tabs[dir]);
 						switchTab(keyupEvent.currentTarget, tabs[dir]);
 					}
 					else {
@@ -153,7 +117,7 @@ const tabbedContent = (function (document) {
 		/**
 		 * Add tab panel semantics and hide them all
 		 */
-		Array.prototype.forEach.call(panels, function (panel, i) {
+		Array.prototype.forEach.call(panels, (panel, i) => {
 			panel.setAttribute('role', 'tabpanel');
 			panel.setAttribute('tabindex', '-1');
 			panel.setAttribute('aria-labelledby', tabs[i].id);
@@ -161,11 +125,25 @@ const tabbedContent = (function (document) {
 		});
 
 		/**
-		 * Initially activate the first tab and reveal the first tab panel
+		 * If the URL contains a tab hash, activate and scroll to the relevant panel.
+		 * Otherwise, initially activate the first tab and reveal the first tab panel.
 		 */
-		tabs[0].removeAttribute('tabindex');
-		tabs[0].setAttribute('aria-selected', 'true');
-		panels[0].hidden = false;
+		if (targetTab.length === 1 && hash.includes('#')) {
+			targetTab[0].removeAttribute('tabindex');
+			targetTab[0].setAttribute('aria-selected', 'true');
+			targetPanel[0].hidden = false;
+			setTimeout(() => {
+				targetTab[0].scrollIntoView({
+					behavior: 'smooth',
+					block: 'center'
+				});
+			}, 250);
+		}
+		else {
+			tabs[0].removeAttribute('tabindex');
+			tabs[0].setAttribute('aria-selected', 'true');
+			panels[0].hidden = false;
+		}
 	};
 
 	/**
@@ -173,4 +151,4 @@ const tabbedContent = (function (document) {
 	 */
 	return publicMethods;
 
-}(document));
+})(document);

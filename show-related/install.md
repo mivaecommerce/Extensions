@@ -6,7 +6,7 @@ If your ReadyTheme did not come with the A11y Toggle extension pre-installed, yo
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/show-related/`
 - Add [_a11y-toggle.scss](_a11y-toggle.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "show-related/a11y-toggle";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "show-related/a11y-toggle";`
 
 
 ### Add the JavaScript

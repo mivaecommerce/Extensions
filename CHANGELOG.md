@@ -1,11 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 2022-1X-XX
+#### Updated
+- All extensions have been updated for Shadows 10.05 to match the styleguide as well as dropping support for Internet Explorer.
+- **Due to performance issue, the Collapsing Breadcrumbs extension has been removed and will be reworked for a later release.**
+
 ## 2022-07-18
 - [A11y Tabs](tabs)
   - Updated `install.md` to include instructions on adding product tabs via custom product fields.
 
-## 2022-03-ZZ
+## 2022-03-28
 - [Product Layout](product-layout)
   - Updated `ajax-add-to-cart.js` to match the current release included in Shadows.
 

@@ -26,7 +26,7 @@ If your ReadyTheme did not come with the default Transfigure Navigation extensio
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/transfigure-navigation/`
 - Add [_transfigure-navigation.scss](_transfigure-navigation.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "navigation/transfigure-navigation";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "navigation/transfigure-navigation";`
 
 
 ### Add the JavaScript

@@ -10,7 +10,7 @@ If your ReadyTheme did not come with the default Mini-Basket extension pre-insta
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/mini-basket/`
 - Add [_mini-basket.scss](_mini-basket.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "mini-basket/mini-basket";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "mini-basket/mini-basket";`
 
 
 ### Add the JavaScript

@@ -9,16 +9,39 @@
  */
 
 .x-pagination {
-	display: flex;
-	max-width: 19rem;
-	margin: 0;
-	align-items: center;
+	margin-bottom: auto var(--default-spacing-unit);
+	max-width: 18rem;
 }
 
-	.x-pagination--centered {
-		margin: auto;
-	}
+.x-pagination--centered {
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-	.x-pagination--right {
-		margin-left: auto;
-	}
+.x-pagination--right {
+	margin-left: auto;
+}
+
+.x-pagination__list {
+	align-items: center;
+	display: flex;
+	gap: var(--default-spacing-unit);
+	justify-content: space-between;
+	list-style: none;
+	margin: 0;
+	width: 100%;
+}
+
+.x-pagination__link {
+	border-color: var(--transparent);
+	border-radius: 50%;
+	color: var(--gray-600);
+	height: 3rem;
+	padding: 0;
+	width: 3rem;
+}
+
+.x-pagination .c-form-select {
+	margin-bottom: 0;
+}

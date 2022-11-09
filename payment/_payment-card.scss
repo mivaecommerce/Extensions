@@ -1,0 +1,53 @@
+/* ==========================================================================
+   EXTENSIONS / PAYMENT / PAYMENT CARD
+   ========================================================================== */
+
+/**
+ * This is the default card layout for the saved payment methods page.
+ */
+
+.x-payment-card {
+	align-items: baseline;
+	display: grid;
+	font-size: var(--default-input-font-size);
+	gap: var(--default-spacing-unit);
+	grid-template-columns: repeat(2, 1fr);
+	padding: var(--default-spacing-unit);
+}
+
+.x-payment-card__image {
+	display: none;
+}
+
+@media (min-width: 48em) {
+	.x-payment-card {
+		align-items: center;
+		grid-template-columns: 38px repeat(4, 1fr);
+	}
+
+	.x-payment-card__image {
+		display: block;
+		grid-area: 1 / 1 / 2 / 2;
+	}
+
+	.x-payment-card__number {
+		grid-area: 1 / 2 / 2 / 3;
+	}
+
+	.x-payment-card__cardholder {
+		grid-area: 1 / 3 / 2 / 4;
+	}
+
+	.x-payment-card__expiry {
+		grid-area: 1 / 4 / 2 / 5;
+	}
+
+	.x-payment-card__actions {
+		grid-area: 1 / 5 / 2 / 6;
+		place-self: center end;
+	}
+}
+.x-payment-card__actions > * {
+	align-items: baseline;
+	gap: 2rem;
+}

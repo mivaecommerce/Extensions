@@ -8,17 +8,18 @@
 
 @media screen and (min-width: 60em) {
 	.x-fasten-header {
+		background-color: var(--white);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		color: var(--gray-600);
 		display: flex;
-		width: 100vw;
-		max-width: none;
-		padding: 0.5rem 1rem;
-		position: fixed;
-		top: 0;
 		font-size: 0.875rem;
-		background-color: $color-white;
-		box-shadow: 0 2px 4px rgba($color-black, 0.2);
-		color: $color-gray-50;
+		left: 0;
+		max-width: none;
 		opacity: 0;
+		padding: 0.5rem 2rem;
+		position: fixed;
+		right: 0;
+		top: 0;
 		transform: scaleY(0);
 		transform-origin: top;
 		transition: all ease-in-out 0.15s;
@@ -30,7 +31,79 @@
 		transform: scaleY(1);
 	}
 
-		.x-fasten-header__logo-image {
-			max-height: 4rem;
-		}
+	.x-fasten-header__logo-image {
+		max-height: 4rem;
+	}
+
+	.x-fasten-header__navigation {
+		position: relative;
+	}
+
+	.x-fasten-header__navigation::before {
+		content: ' ';
+		display: block;
+		height: var(--default-input-font-size);
+		width: 100%;
+	}
+
+	.x-fasten-header__navigation-element {
+		font-size: var(--default-input-font-size);
+		font-weight: var(--font-medium);
+		cursor: pointer;
+		position: absolute;
+		top: -1em;
+	}
+
+	.x-fasten-header__navigation-element summary {
+		border-radius: var(--default-border-radius);
+		line-height: 1;
+		margin-bottom: 0;
+		padding: 1em 3.5em 1em 1.5em;
+		user-select: none;
+		white-space: nowrap;
+	}
+
+	.x-fasten-header__navigation-element summary::marker {
+		content: '\56';
+		font-family: "ReadyTheme Icons", sans-serif;
+		font-size: var(--default-spacing-unit);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	.x-fasten-header__navigation-element summary span {
+		padding-left: 1em;
+		position: relative;
+		top: calc(-1 * (var(--default-spacing-unit) - var(--default-input-font-size)) / 2);
+	}
+
+	.x-fasten-header__navigation-element[open] summary {
+		background-color: var(--gray-100);
+		margin-bottom: calc(0.25rem + var(--default-border-width));
+	}
+
+	.x-fasten-header__navigation-list {
+		background-color: var(--white);
+		border: var(--default-border-width) solid var(--gray-200);
+		box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 8%);
+		list-style: none;
+		margin: 0;
+		padding: 0.5em 1.5em;
+	}
+
+	.x-fasten-header__navigation-item {
+		padding: 0.5em 0;
+	}
+
+	.x-fasten-header__navigation-link {
+		display: block;
+		padding: 0.5em 0;
+		text-decoration: none;
+	}
+
+	.x-fasten-header__navigation-link:hover {
+		text-decoration: underline;
+		text-decoration-thickness: 0.1em;
+		text-underline-offset: 0.15em;
+	}
 }

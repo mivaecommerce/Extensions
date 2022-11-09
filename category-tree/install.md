@@ -10,4 +10,4 @@ If your ReadyTheme did not come with the default Category Tree extension pre-ins
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/category-tree/`
 - Add [_category-tree.scss](_category-tree.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "category-tree/category-tree";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "category-tree/category-tree";`

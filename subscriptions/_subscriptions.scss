@@ -9,48 +9,48 @@
  */
 
 .miva_datepicker {
+	background-color: var(--white);
+	border: var(--default-border-width) solid var(--gray-400);
 	display: none;
+	padding: var(--default-spacing-unit);
 	position: absolute;
-	padding: $global-spacing-unit;
-	background-color: $color-white;
-	border: $global-border-width solid $color-gray-20--shaded;
 	z-index: 1000;
 }
 
 .miva_datepicker_calendar_container {
 	display: inline-block;
-	width: 214px;
 	position: relative;
-	vertical-align: top;
 	-webkit-touch-callout: none;
 	user-select: none;
+	vertical-align: top;
+	width: 214px;
 }
 
 .miva_datepicker_calendar_month_selector {
-	display: flex;
 	align-items: center;
+	background-color: var(--gray-400);
+	display: flex;
 	position: relative;
-	background-color: $color-gray-30;
 }
 
 .miva_datepicker_calendar_month_selector_next,
 .miva_datepicker_calendar_month_selector_prev {
-	width: 35px;
-	height: 35px;
-	padding: 0;
 	background: 0 -35px no-repeat;
 	border: 0 none;
 	cursor: pointer;
+	height: 35px;
+	padding: 0;
+	width: 35px;
 }
 
 .miva_datepicker_calendar_month_selector_next:hover,
 .miva_datepicker_calendar_month_selector_prev:hover {
-	background-color: $color-gray-50;
+	background-color: var(--gray-600);
 }
 
 .miva_datepicker_calendar_month_selector_title {
+	color: var(--white);
 	flex-grow: 1;
-	color: $color-white;
 	text-align: center;
 }
 
@@ -77,11 +77,11 @@
 
 .miva_datepicker_calendar_weekday_title {
 	display: inline-block;
-	width: 28px;
+	font-weight: 700;
 	padding: 3px 0;
 	position: absolute;
-	font-weight: 700;
 	text-align: center;
+	width: 28px;
 }
 
 #miva_datepicker_calendar_week_container {
@@ -96,46 +96,46 @@
 }
 
 .miva_datepicker_calendar_day {
-	display: inline-flex;
 	align-items: center;
+	border: var(--default-border-width) solid var(--gray-400);
+	bottom: 1px;
+	cursor: pointer;
+	display: inline-flex;
+	font-size: 0.75em;
 	justify-content: center;
-	width: 26px;
 	position: absolute;
 	top: 1px;
-	bottom: 1px;
-	font-size: 0.75em;
-	border: $global-border-width solid $color-gray-20--shaded;
-	cursor: pointer;
+	width: 26px;
 }
 
 .miva_datepicker_calendar_day:hover {
-	background-color: $color-gray-30;
-	border-color: $color-gray-50;
-	color: $color-white;
+	background-color: var(--gray-400);
+	border-color: var(--gray-600);
+	color: var(--white);
 }
 
 .miva_datepicker_calendar_day_noselect,
 .miva_datepicker_calendar_day_noselect:hover {
-	background-color: $color-gray-20;
-	border-color: $color-gray-50;
-	color: $color-gray-50;
+	background-color: var(--gray-300);
+	border-color: var(--gray-600);
+	color: var(--gray-600);
 }
 
 .miva_datepicker_calendar_day_current {
-	border-color: $color-gray-50;
-	color: $color-gray-50;
+	border-color: var(--gray-600);
+	color: var(--gray-600);
 	font-weight: 700;
 }
 
 .miva_datepicker_calendar_day_current:hover {
-	background-color: $color-gray-50;
-	color: $color-white;
+	background-color: var(--gray-600);
+	color: var(--white);
 }
 
 .miva_datepicker_calendar_day_active {
-	background-color: $color-gray-50;
-	border-color: $color-gray-30;
-	color: $color-white;
+	background-color: var(--gray-600);
+	border-color: var(--gray-400);
+	color: var(--white);
 	font-weight: 700;
 }
 

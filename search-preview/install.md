@@ -40,4 +40,4 @@ If your ReadyTheme did not come with the Search Preview extension pre-installed,
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/search-preview/`
 - Add [_search-preview.scss](_search-preview.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "search-preview/search-preview";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "search-preview/search-preview";`

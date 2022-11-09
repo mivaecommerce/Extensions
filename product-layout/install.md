@@ -7,10 +7,10 @@ _**Note:** You may need to rollback your page code to earlier version or copy th
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/product-layout/`
 - Add [_product-layout.scss](_product-layout.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "product-layout/product-layout";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "product-layout/product-layout";`
 - Create a new subdirectory as `build/extensions/product-layout/picturebook/`
 - Add [_product-layout.scss](picturebook/_photo-gallery.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "product-layout/picturebook/photo-gallery";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "product-layout/picturebook/photo-gallery";`
 
 
 ### Add the JavaScript

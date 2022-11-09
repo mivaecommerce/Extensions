@@ -11,11 +11,12 @@
  */
 
 .x-messages {
-	margin-bottom: $global-spacing-unit;
-	padding: 0.75em 1.25em;
+	background-color: var(--gray-200);
+	border: var(--default-border-width) solid var(--gray-500);
+	color: var(--black);
 	font-size: 0.875rem;
-	background-color: $color-gray-10;
-	border: $global-border-width solid currentColor;
+	margin-bottom: var(--default-spacing-unit);
+	padding: 0.875em 1.25em;
 }
 
 
@@ -30,23 +31,27 @@
 
 
 .x-messages--error {
-	background-color: $color-white;
-	color: $color-error;
+	background-color: var(--red-100);
+	border-color: var(--red-200);
+	color: var(--red-400);
 }
 
 .x-messages--info {
-	background-color: $color-white;
-	color: $color-info;
+	background-color: var(--blue-100);
+	border-color: var(--blue-200);
+	color: var(--blue-400);
 }
 
 .x-messages--success {
-	background-color: $color-white;
-	color: $color-success;
+	background-color: var(--green-100);
+	border-color: var(--green-200);
+	color: var(--green-400);
 }
 
 .x-messages--warning {
-	background-color: $color-gray-10;
-	border-color: $color-warning;
+	background-color: var(--yellow-100);
+	border-color: var(--yellow-200);
+	color: var(--yellow-400);
 }
 
 
@@ -54,37 +59,20 @@
  * These classes will help format the message if you are adding an icon.
  */
 .x-messages--with-icon {
-	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	display: flex;
+	gap: 1.25em;
 }
 
 .x-messages__icon {
-	font-size: 3rem;
+	font-size: 2em;
 }
-
 
 .x-messages__close {
-	position: absolute;
-	top: 50%;
-	right: 0.25rem;
-	margin-top: -1rem;
-	color: $color-gray-50;
-	font-size: 2rem;
 	line-height: 1;
+	margin-top: -1rem;
+	position: absolute;
+	right: 0.25rem;
 	text-decoration: none;
-	opacity: 0.3;
-}
-
-
-
-
-/*
-	what??? they have an old browser?
-	This can be removed if you do not need to alert for IE < 9.
-*/
-.x-messages--update-browser {
-	width: 100%;
-	position: relative;
-	text-align: center;
+	top: 50%;
 }

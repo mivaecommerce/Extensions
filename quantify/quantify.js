@@ -1,33 +1,31 @@
 /**
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |q|u|a|n|t|i|f|y|
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ * EXTENSIONS / QUANTIFY / QUANTIFY
  *
  * This extension allows for the use of buttons to increase/decrease item
  * quantities on the product and basket pages. When used on the basket page,
  * the decrease button becomes a remove button if the quantity is 1.
+ *
+ * Version: 10.05.00
  */
 
-const quantify = (function () {
-	'use strict';
+const quantify = (() => {
 
 	const quantifyAPI = {};
 
-	const allowRemoveUpdate = function (section) {
+	const allowRemoveUpdate = section => {
 		let quantities = section.querySelectorAll('[data-hook="group-quantity"]');
 
-		function toggleRemove(input, quantity) {
+		function toggleRemove({previousElementSibling}, quantity) {
 			if (parseInt(quantity) > 1) {
-				input.previousElementSibling.classList.remove('is-disabled');
+				previousElementSibling.removeAttribute('aria-disabled');
 			}
 			else {
-				input.previousElementSibling.classList.add('is-disabled');
+				previousElementSibling.setAttribute('aria-disabled', 'true');
 			}
 		}
 
 		if (quantities) {
-			for (let id = 0; id < quantities.length; id++) {
-				let quantityLine = quantities[id];
+			for (let quantityLine of quantities) {
 				let updateTimeout = null;
 
 				toggleRemove(quantityLine, quantityLine.value);
@@ -36,7 +34,7 @@ const quantify = (function () {
 					let input = this;
 
 					clearTimeout(updateTimeout);
-					updateTimeout = setTimeout(function () {
+					updateTimeout = setTimeout(() => {
 						toggleRemove(input, input.value);
 						groupSubmit(event, input, section);
 					}, 250);
@@ -46,7 +44,7 @@ const quantify = (function () {
 					let input = this;
 
 					clearTimeout(updateTimeout);
-					updateTimeout = setTimeout(function () {
+					updateTimeout = setTimeout(() => {
 						toggleRemove(input, input.value);
 						groupSubmit(event, input, section);
 					}, 250);
@@ -57,13 +55,13 @@ const quantify = (function () {
 
 	allowRemoveUpdate(document);
 
-	const groupSubmit = function (event, quantity, section) {
-		if (event.key !== 8 && event.key !== 37 && event.key !== 38 && event.key !== 39 && event.key !== 40 && event.key !== 46 && quantity.value !== '') {
-			section.querySelector('[data-hook="' + event.target.getAttribute('data-group') + '"]').submit();
+	const groupSubmit = ({key, target}, {value}, section) => {
+		if (key !== 8 && key !== 37 && key !== 38 && key !== 39 && key !== 40 && key !== 46 && value !== '') {
+			section.querySelector(`[data-hook="${target.getAttribute('data-group')}"]`).submit();
 		}
 	}
 
-	quantifyAPI.init = function (section) {
+	quantifyAPI.init = section => {
 		const adjusters = section.querySelectorAll('[data-hook="quantify"]');
 
 		if (adjusters) {
@@ -71,7 +69,7 @@ const quantify = (function () {
 				/**
 				 * This listener prevents the `enter` key from adjusting the `input` value.
 				 */
-				adjusters[id].addEventListener('keydown', function (keyEvent) {
+				adjusters[id].addEventListener('keydown', keyEvent => {
 					if (keyEvent.target.closest('input')) {
 						if (keyEvent.key === 'Enter') {
 							keyEvent.preventDefault();
@@ -82,9 +80,7 @@ const quantify = (function () {
 				adjusters[id].addEventListener('click', function (event) {
 					if (event.target.closest('button')) {
 						let button = event.target;
-						let inputs = [].filter.call(this.children, function (sibling) {
-							return sibling !== button && sibling.closest('input');
-						});
+						let inputs = [].filter.call(this.children, sibling => sibling !== button && sibling.closest('input'));
 						let input = inputs[0];
 						let max = input.hasAttribute('data-max') ? parseInt(input.getAttribute('data-max')) : undefined;
 						let min = input.hasAttribute('data-min') ? parseInt(input.getAttribute('data-min')) : 1;
@@ -135,7 +131,7 @@ const quantify = (function () {
 		}
 	};
 
-	quantifyAPI.restore = function (section) {
+	quantifyAPI.restore = section => {
 		allowRemoveUpdate(section);
 		quantifyAPI.init(section);
 	};

@@ -1,21 +1,16 @@
 /**
- * +-+-+-+-+-+-+
- * |d|i|a|l|o|g|
- * +-+-+-+-+-+-+
+ * EXTENSIONS / DIALOG / DIALOG
  *
  * A modal that is fully keyboard accessible. Keyboard focus will lock to the modal only while open and can be closed
  * by pressing Escape or tabbing to the 'close' button. For non-keyboard navigation, the modal can be closed through
  * clicking on the background.
  *
  * Based on `Accessible modal with tab trap and vanilla JS` by Danielle [https://codepen.io/hidanielle/pen/MyggJJ]
- * Updated version by Matt Zimmermann [https://github.com/influxweb]
- * Version: 1.0.0
- * License: MIT
+ *
+ * Version: 10.05.00
  */
 
-(function () {
-	'use strict';
-
+(() => {
 	/**
 	 * Create a dialog object, set the target element, and create a list of focusable elements.
 	 * @type {{set: *[], closeTriggers: *[], focused: Element, focusable: string, el: Element, openTriggers: *[], init: function, show: function, hide: function, trap: function, getFocusable: function, getFirstFocusable: function, setInert: function, removeInert: function}}
@@ -27,14 +22,22 @@
 		focusable: 'a[href], area[href], input:not([disabled]):not([type="hidden"]):not([aria-hidden]), select:not([disabled]):not([aria-hidden]), textarea:not([disabled]):not([aria-hidden]), button:not([disabled]):not([aria-hidden]), object, embed, [tabindex]:not([tabindex^="-"])',
 		el: undefined,
 		focused: undefined,
-		init: function () {},
-		show: function () {},
-		hide: function () {},
-		trap: function () {},
-		getFocusable: function () {},
-		getFirstFocusable: function () {},
-		setInert: function () {},
-		removeInert: function () {}
+		init() {
+		},
+		show() {
+		},
+		hide() {
+		},
+		trap() {
+		},
+		getFocusable() {
+		},
+		getFirstFocusable() {
+		},
+		setInert() {
+		},
+		removeInert() {
+		}
 	};
 
 
@@ -44,7 +47,7 @@
 	 * @returns {boolean}
 	 */
 	const validateDialogPresence = function validateDialogPresence(id) {
-		if (!document.querySelector('[data-dialog=' + id + ']')) {
+		if (!document.querySelector(`[data-dialog=${id}]`)) {
 			console.warn("Dialog: \u2757Seems like you have missed %c'".concat(id, "'"), 'background-color: #f8f9fa;color: #50596c;font-weight: bold;', 'data-dialog somewhere in your code. Refer example below to resolve it.');
 			console.warn("%cExample:", 'background-color: #f8f9fa;color: #50596c;font-weight: bold;', "<div class=\"c-dialog\" aria-hidden=\"true\" data-dialog=\"".concat(id, "\"></div>"));
 			return false;
@@ -55,27 +58,25 @@
 	/**
 	 * Initialize the dialog, find the focusable children elements, and set up the click handlers.
 	 */
-	dialog.init = function () {
-		dialog.set.forEach(function (dialog) {
+	dialog.init = () => {
+		dialog.set.forEach(dialog => {
 			dialog.setAttribute('aria-hidden', 'true');
 		});
 
-		dialog.openTriggers.forEach(function (trigger) {
+		dialog.openTriggers.forEach(trigger => {
 			trigger.addEventListener('click', function (e) {
 				e.preventDefault();
 				let name = this.dataset.dialogTrigger;
 
-				dialog.el = dialog.set.find(function (value) {
-					return value.dataset.dialog === name;
-				});
+				dialog.el = dialog.set.find(({dataset}) => dataset.dialog === name);
 				if (validateDialogPresence(name) !== false) {
 					dialog.show();
 				}
 			});
 		});
 
-		dialog.closeTriggers.forEach(function (trigger) {
-			trigger.addEventListener('click', function (e) {
+		dialog.closeTriggers.forEach(trigger => {
+			trigger.addEventListener('click', e => {
 				e.preventDefault();
 				dialog.hide();
 			});
@@ -84,7 +85,7 @@
 		/**
 		 * Close the open dialog when clicking on the background.
 		 */
-		document.addEventListener('click', function (clickEvent) {
+		document.addEventListener('click', clickEvent => {
 			let clickEventTarget = clickEvent.target;
 
 			if (dialog.el) {
@@ -109,7 +110,7 @@
 	 * Add class to dialog.
 	 * Set focus to first focusable element from list created in init function.
 	 */
-	dialog.show = function () {
+	dialog.show = () => {
 		document.body.appendChild(dialog.el);
 		dialog.setInert();
 
@@ -119,7 +120,7 @@
 
 		// Focus the first focusable item in the dialog.
 		dialog.getFirstFocusable().focus();
-		dialog.el.onkeydown = function (e) {
+		dialog.el.onkeydown = e => {
 			dialog.trap(e);
 		};
 	};
@@ -132,7 +133,7 @@
 	 * Remove show class from dialog.
 	 * Set focus to previously focused element.
 	 */
-	dialog.hide = function () {
+	dialog.hide = () => {
 		document.body.classList.remove('has-dialog');
 		dialog.el.setAttribute('aria-hidden', 'true');
 		dialog.removeInert();
@@ -153,7 +154,7 @@
 	 * If key is `shift-tab` (backwards) and you're at the first focusable item, set focus to the last focusable item.
 	 * If not `shift-tab` and the current focused item is the last item, set focus to the first focusable item.
 	 */
-	dialog.trap = function (e) {
+	dialog.trap = e => {
 		if (e.which === 27) {
 			dialog.hide();
 		}
@@ -183,15 +184,13 @@
 	 * Get all focusable elements inside of the dialog.
 	 * @returns {Array} Array of focusable elements
 	 */
-	dialog.getFocusable = function () {
-		return Array.from(dialog.el.querySelectorAll(dialog.focusable));
-	};
+	dialog.getFocusable = () => Array.from(dialog.el.querySelectorAll(dialog.focusable));
 
 	/**
 	 * Get the first focusable element inside of the dialog.
 	 * @returns {Object} A DOM element
 	 */
-	dialog.getFirstFocusable = function () {
+	dialog.getFirstFocusable = () => {
 		let focusable = dialog.getFocusable();
 
 		return focusable[0];
@@ -209,22 +208,20 @@
 	 * https://github.com/WICG/inert/blob/master/explainer.md#wouldnt-this-be-better-as
 	 * Also see https://github.com/WICG/inert for more information about the inert attribute.
 	 */
-	dialog.setInert = function () {
-		Array.from(document.body.children).forEach(function (child) {
-			if (dialog.set.indexOf(child) === -1 && child !== dialog.el && child.tagName !== 'LINK' && child.tagName !== 'SCRIPT') {
+	dialog.setInert = () => {
+		Array.from(document.body.children).forEach(child => {
+			if (!dialog.set.includes(child) && child !== dialog.el && child.tagName !== 'LINK' && child.tagName !== 'SCRIPT') {
 				child.classList.add('is-inert');
 				child.setAttribute('inert', '');
-				//child.setAttribute('aria-hidden', 'true');
 			}
 		});
 	};
 
-	dialog.removeInert = function () {
-		Array.from(document.body.children).forEach(function (child) {
-			if (dialog.set.indexOf(child) === -1 && child !== dialog.el && child.tagName !== 'LINK' && child.tagName !== 'SCRIPT') {
+	dialog.removeInert = () => {
+		Array.from(document.body.children).forEach(child => {
+			if (!dialog.set.includes(child) && child !== dialog.el && child.tagName !== 'LINK' && child.tagName !== 'SCRIPT') {
 				child.classList.remove('is-inert');
 				child.removeAttribute('inert');
-				//child.removeAttribute('aria-hidden');
 			}
 		});
 	};
@@ -234,10 +231,8 @@
 	 * This is a helper function we will put into `window` to allow for opening of a specific dialog.
 	 * @param targetDialog
 	 */
-	let openDialog = function (targetDialog) {
-		dialog.el = dialog.set.find(function (value) {
-			return value.dataset.dialog === targetDialog;
-		});
+	let openDialog = targetDialog => {
+		dialog.el = dialog.set.find(({dataset}) => dataset.dialog === targetDialog);
 		if (validateDialogPresence(targetDialog) !== false) {
 			dialog.show();
 		}
@@ -248,7 +243,7 @@
 	/**
 	 * This is a helper function we will put into `window` to allow for closing of a specific dialog.
 	 */
-	let closeDialog = function () {
+	let closeDialog = () => {
 		dialog.hide();
 	};
 	window && (window.closeDialog = closeDialog);
@@ -258,7 +253,7 @@
 	 * This is a helper function we will put into `window` to allow for rescanning of the page when
 	 * dynamic content has been added. It will then reinitialize.
 	 */
-	let reloadDialog = function () {
+	let reloadDialog = () => {
 		dialog.set = Array.from(document.querySelectorAll('[data-dialog]'));
 		dialog.openTriggers = Array.from(document.querySelectorAll('[data-dialog-trigger]'));
 		dialog.closeTriggers = Array.from(document.querySelectorAll('[data-dialog-close]'));

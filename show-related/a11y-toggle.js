@@ -1,17 +1,15 @@
 /**
- * A11y Toggles
- * An accessible replacement to the checkbox-hack for toggling sections.
+ * EXTENSIONS / SHOW RELATED / A11Y TOGGLE
  *
- * Based on code by: https://hugogiraudel.com/
+ * An accessible replacement to the checkbox-hack for toggling sections.
+ * https://github.com/edenspiekermann/a11y-toggle
+ *
+ * By: https://kittygiraudel.com/
  * MIT License: https://github.com/edenspiekermann/a11y-toggle/blob/master/LICENSE
  */
 
-(function () {
-	'use strict';
-
-	const distinct = function (value, index, self) {
-		return self.indexOf(value) === index;
-	};
+(() => {
+	const distinct = (value, index, self) => self.indexOf(value) === index;
 
 	let atResizeTimeout;
 	let internalId = 0;
@@ -47,18 +45,18 @@
 			return false;
 		}
 
-		let toggles = togglesMap['#' + target.id];
+		let toggles = togglesMap[`#${target.id}`];
 		let isExpanded = target.getAttribute('aria-hidden') === 'false';
 
 		target.setAttribute('aria-hidden', isExpanded);
-		toggles.forEach(function (toggle) {
+		toggles.forEach(toggle => {
 			toggle.setAttribute('aria-expanded', !isExpanded);
 		});
 	}
 
-	let initA11yToggle = function (context) {
-		togglesMap = $('[data-a11y-toggle]', context).reduce(function (acc, toggle) {
-			let selector = '#' + toggle.getAttribute('data-a11y-toggle');
+	let initA11yToggle = context => {
+		togglesMap = $('[data-a11y-toggle]', context).reduce((acc, toggle) => {
+			let selector = `#${toggle.getAttribute('data-a11y-toggle')}`;
 
 			acc[selector] = acc[selector] || [];
 			acc[selector].push(toggle);
@@ -67,14 +65,14 @@
 
 		let targets = Object.keys(togglesMap);
 
-		targets.length && $(targets).forEach(function (target) {
-			let toggles = togglesMap['#' + target.id];
+		targets.length && $(targets).forEach(target => {
+			let toggles = togglesMap[`#${target.id}`];
 			let isExpanded = target.hasAttribute('data-a11y-toggle-open');
 			let labelledby = [];
 
 			if (toggles[0].offsetWidth > 0 && toggles[0].offsetHeight > 0) {
-				toggles.forEach(function (toggle) {
-					toggle.id || toggle.setAttribute('id', 'a11y-toggle-' + internalId++);
+				toggles.forEach(toggle => {
+					toggle.id || toggle.setAttribute('id', `a11y-toggle-${internalId++}`);
 					toggle.setAttribute('aria-controls', target.id);
 					toggle.setAttribute('aria-expanded', isExpanded);
 					labelledby.push(toggle.id);
@@ -86,7 +84,7 @@
 				target.setAttribute('role', 'region');
 			}
 			else {
-				toggles.forEach(function (toggle) {
+				toggles.forEach(toggle => {
 					toggle.removeAttribute('id');
 					toggle.removeAttribute('aria-controls');
 					toggle.removeAttribute('aria-expanded');
@@ -102,13 +100,13 @@
 		});
 	};
 
-	let destroyA11yToggle = function () {
+	let destroyA11yToggle = () => {
 		let targets = Object.keys(togglesMap);
 
-		targets.length && $(targets).forEach(function (target) {
-			let toggles = togglesMap['#' + target.id];
+		targets.length && $(targets).forEach(target => {
+			let toggles = togglesMap[`#${target.id}`];
 
-			toggles.forEach(function (toggle) {
+			toggles.forEach(toggle => {
 				toggle.removeAttribute('id');
 				toggle.removeAttribute('aria-controls');
 				toggle.removeAttribute('aria-expanded');
@@ -122,11 +120,11 @@
 		});
 	};
 
-	let closeA11yToggle = function (trigger) {
+	let closeA11yToggle = trigger => {
 		if (trigger) {
-			const thisToggle = document.querySelector('#' + trigger.getAttribute('data-a11y-toggle'));
+			const thisToggle = document.querySelector(`#${trigger.getAttribute('data-a11y-toggle')}`);
 
-			document.addEventListener('mousedown', function (event) {
+			document.addEventListener('mousedown', event => {
 				if (thisToggle.getAttribute('aria-hidden') === 'false') {
 					if (!thisToggle.contains(event.target) && event.target !== trigger) {
 						trigger.click();
@@ -148,25 +146,28 @@
 	 * This will reinitialize A11y Toggle on `resize` to either enable or destroy
 	 * toggles who have their display managed through media queries.
 	 */
-	window.addEventListener('resize', function () {
+	window.addEventListener('resize', () => {
 		if (atResizeTimeout) {
 			window.cancelAnimationFrame(atResizeTimeout);
 		}
 
-		atResizeTimeout = window.requestAnimationFrame(function () {
+		atResizeTimeout = window.requestAnimationFrame(() => {
 			initA11yToggle();
 		});
 	}, false);
 
-	document.addEventListener('click', function (event) {
+	document.addEventListener('click', event => {
 		let toggle = getClosestToggle(event.target);
 
+		if (toggle && toggle.hasAttribute('data-a11y-toggle')) {
+			event.preventDefault();
+		}
 		handleToggle(toggle);
 	});
 
-	document.addEventListener('keyup', function (keyupEvent) {
-		if (keyupEvent.key === 'Enter' || keyupEvent.key === ' ') {
-			let toggle = getClosestToggle(keyupEvent.target);
+	document.addEventListener('keyup', ({key, target}) => {
+		if (key === 'Enter' || key === ' ') {
+			let toggle = getClosestToggle(target);
 
 			if (toggle && toggle.getAttribute('role') === 'button') {
 				handleToggle(toggle);

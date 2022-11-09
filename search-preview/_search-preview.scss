@@ -3,67 +3,32 @@
    ========================================================================== */
 
 .x-search-preview {
+	background-color: var(--white);
+	border-radius: 0 0 var(--default-border-radius) var(--default-border-radius);
+	color: var(--gray-600);
 	display: none;
-	width: 100%;
+	flex-direction: column;
+	font-size: var(--default-input-font-size);
+	gap: 1em;
+	list-style: none;
 	margin: 0;
-	padding: 0.75rem 0.5rem;
+	outline: var(--default-border-width) solid var(--gray-400);
+	padding: 0.75rem 1rem;
 	position: absolute;
 	right: 0;
-	list-style: none;
-	background-color: $color-white;
-	box-shadow: 0 2px 4px 1px rgba($color-black, 0.25);
-	opacity: 0;
-	transition: opacity ease-in-out 0.5s;
+	width: 100%;
 	z-index: 500;
 }
 
-	.x-search-preview--open {
-		opacity: 1;
-	}
+.x-search-preview--open {
+	display: flex;
+}
 
-	.x-search-preview__entry {
-		display: block;
-	}
-
-		.x-search-preview__list {
-			padding: 0 0.5rem;
-		}
-
-			.x-search-preview__line {
-				display: flex;
-				padding: 0.5rem 0;
-				position: relative;
-				align-items: center;
-				font-size: 0.875rem;
-				border-bottom: $global-border-width solid $color-gray-10;
-				cursor: pointer;
-			}
-
-				.x-search-preview__image {
-					width: 4rem;
-					height: 4rem;
-					margin: 0 1em 0 0;
-					overflow: hidden;
-					text-align: center;
-				}
-
-				.x-search-preview__item {
-					display: flex;
-					flex: 1;
-					justify-content: space-between;
-					text-decoration: none;
-				}
-
-					.x-search-preview__item--selected {
-						background-color: $color-gray-10;
-					}
-
-			.x-search-preview__search-all {
-				padding: 0.5rem;
-				font-style: italic;
-				cursor: pointer;
-			}
-
+.x-search-preview__item {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+}
 
 /**
  * This section contains the necessary styles when using the built-in search
@@ -72,5 +37,18 @@
  */
 
 .mm_searchfield_menuitem_selected {
-	background-color: $color-gray-10;
+	background-color: var(--gray-100);
+}
+
+.x-search-preview__image {
+	height: var(--search-preview-image-y);
+	margin-bottom: 0;
+	overflow: hidden;
+	width: var(--search-preview-image-x);
+}
+
+.x-search-preview__search-all {
+	cursor: pointer;
+	font-style: italic;
+	padding: 0.5rem;
 }

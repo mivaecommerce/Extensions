@@ -18,7 +18,7 @@ If your ReadyTheme did not come with the Messages extension pre-installed, you c
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/messages/`
 - Add [_messages.scss](_messages.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "messages/messages";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "messages/messages";`
 
 
 ### Add the JavaScript

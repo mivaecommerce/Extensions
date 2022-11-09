@@ -7,4 +7,4 @@ _**Note:** You may need to rollback your page code to earlier version or copy th
 ### Add the CSS
 - Create a new build subdirectory as `build/extensions/pagination/`
 - Add [_pagination.scss](_pagination.scss) to the directory.
-- Update your `build/extensions/extensions.scss` file to include `@import "pagination/pagination";`
+- Update your `build/extensions/extensions.scss` file to include `@forward "pagination/pagination";`
