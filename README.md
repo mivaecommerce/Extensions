@@ -1,7 +1,7 @@
 # Extensions
 This is a collection of extensions created for the Shadows, and Shadows-based, ReadyThemes.
 
-* **Collapsing Breadcrumbs:** [Code](breadcrumbs/collapsing-breadcrumbs) | [Installation Instructions](breadcrumbs/collapsing-breadcrumbs/install.md)
+* **Breadcrumbs:** [Code](breadcrumbs) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](breadcrumbs/install.md)
 * **Category Tree:** [Code](category-tree) | [Demonstration](https://shadows.mivareadythemes.com/category-1.html) | [Installation Instructions](category-tree/install.md)
 * **Contact:** [Code](contact) | [Demonstration](https://shadows.mivareadythemes.com/contact-us.html) | [Installation Instructions](contact/install.md)
 * **Dialog:** [Code](dialog) | [Demonstration](https://shadows.mivareadythemes.com/order-history-list.html) | [Installation Instructions](dialog/install.md)
@@ -13,6 +13,7 @@ This is a collection of extensions created for the Shadows, and Shadows-based, R
 * **Mini-Basket:** [Code](mini-basket) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](mini-basket/install.md)
 * **Transfigure Navigation:** [Code](navigation) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](navigation/install.md)
 * **Pagination:** [Code](pagination) | [Demonstration](https://shadows.mivareadythemes.com/product-list.html) | [Installation Instructions](pagination/install.md)
+* **Payment Cards:** [Code](payment) | [Demonstration](https://shadows.mivareadythemes.com/) | [Installation Instructions](payment/install.md)
 * **Product Layout:** [Code](product-layout) | [Demonstration](https://shadows.mivareadythemes.com/number-2.html) | [Installation Instructions](product-layout/install.md)
 * **Product Lists:** [Code](product-lists) | [Demonstration](https://shadows.mivareadythemes.com/product-list.html) | [Installation Instructions](product-lists/install.md)
 * **Quantify:** [Code](quantify) | [Demonstration](https://shadows.mivareadythemes.com/number-2.html) | [Installation Instructions](quantify/install.md)
